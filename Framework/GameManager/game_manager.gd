@@ -6,7 +6,9 @@ extends Node
 @onready var difficulty_manager: DifficultyManager = %DifficultyManager as DifficultyManager
 @onready var save_data_manager: SaveDataManager = %SaveDataManager as SaveDataManager
 
+## For microgames, use the GameManager.win() func instead of emitting this signal manually
 signal game_won
+## For microgames, use the GameManager.lose() func instead of emitting this signal manually
 signal game_lost
 
 func _ready() -> void:
@@ -16,11 +18,12 @@ func _ready() -> void:
 	game_lost.connect(save_data_manager._handle_lost_game)
 	difficulty_manager.difficulty_changed.connect(save_data_manager._on_difficulty_chnaged)
 
-
+## DO NOT MANUALLY USE THIS IN YOUR MICROGAME
 func unpause_game() -> void:
 	get_tree().paused = false
 
 
+## DO NOT MANUALLY USE THIS IN YOUR MICROGAME
 func pause_game() -> void:
 	get_tree().paused = true
 

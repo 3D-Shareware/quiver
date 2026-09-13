@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mc5sx2ggbl4q"
-path="res://.godot/imported/tween_effect_2d_icon.png-6b2e2be5124e02366ca319da01fa3298.ctex"
+uid="uid://mms7tsllqfcb"
+path="res://.godot/imported/tween_effect_control_icon.png-31d90b347dba98c493bd2e2ed0a51732.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Framework/Addons/Effect_Components/Assets/tween_effect_2d_icon.png"
-dest_files=["res://.godot/imported/tween_effect_2d_icon.png-6b2e2be5124e02366ca319da01fa3298.ctex"]
+source_file="res://Framework/Addons/TweenTool/Assets/tween_effect_control_icon.png"
+dest_files=["res://.godot/imported/tween_effect_control_icon.png-31d90b347dba98c493bd2e2ed0a51732.ctex"]
 
 [params]
 

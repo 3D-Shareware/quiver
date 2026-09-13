@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://di8n5o171l714" path="res://ExampleGame/Bubble/scripts/evil_bubble.gd" id="1_n18j3"]
 [ext_resource type="Texture2D" uid="uid://c61aau1jumg7e" path="res://ExampleGame/Assets/Bubble.png" id="2_5d7xr"]
 [ext_resource type="Texture2D" uid="uid://cboqb28b80p8s" path="res://ExampleGame/Bubble/Assets/circle.png" id="2_m3186"]
-[ext_resource type="Script" uid="uid://cv1tqomq6d35i" path="res://Framework/Addons/Effect_Components/Scripts/Components/node2D_tween.gd" id="3_j5llp"]
+[ext_resource type="Script" uid="uid://cv1tqomq6d35i" path="res://Framework/Addons/TweenTool/Scripts/Components/node2D_tween.gd" id="3_j5llp"]
 [ext_resource type="AudioStream" uid="uid://dadu3mpxrbwug" path="res://ExampleGame/Sounds/African1.wav" id="4_m3186"]
-[ext_resource type="Script" uid="uid://cct0slx0ktj60" path="res://Framework/Addons/Effect_Components/Scripts/TweenResources/transform_tween.gd" id="6_63fv0"]
+[ext_resource type="Script" uid="uid://cct0slx0ktj60" path="res://Framework/Addons/TweenTool/Scripts/TweenResources/transform_tween.gd" id="6_63fv0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1jbh"]
 radius = 21.023796

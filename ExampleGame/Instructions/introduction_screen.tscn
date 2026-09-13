@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://bri1hg8pxkjhc" path="res://ExampleGame/Instructions/Assets/Pop.png" id="1_esqfm"]
 [ext_resource type="Texture2D" uid="uid://dqmnmg0w6evba" path="res://ExampleGame/Instructions/Assets/mouse-Sheet.png" id="4_4l27e"]
 [ext_resource type="Texture2D" uid="uid://deeqg48ya3c8e" path="res://ExampleGame/Instructions/Assets/Pop-Sheet.png" id="4_m1c35"]
-[ext_resource type="Script" uid="uid://cct0slx0ktj60" path="res://Framework/Addons/Effect_Components/Scripts/TweenResources/transform_tween.gd" id="5_q2dc5"]
-[ext_resource type="Script" uid="uid://cv1tqomq6d35i" path="res://Framework/Addons/Effect_Components/Scripts/Components/node2D_tween.gd" id="5_w43w7"]
-[ext_resource type="Script" uid="uid://dby7depabb4fv" path="res://Framework/Addons/Effect_Components/Scripts/TweenResources/canvas_item_tween.gd" id="6_q2dc5"]
-[ext_resource type="Script" uid="uid://c0eq70gyg7rhf" path="res://Framework/Addons/Effect_Components/Scripts/Components/control_tween.gd" id="7_w86pw"]
+[ext_resource type="Script" uid="uid://cct0slx0ktj60" path="res://Framework/Addons/TweenTool/Scripts/TweenResources/transform_tween.gd" id="5_q2dc5"]
+[ext_resource type="Script" uid="uid://cv1tqomq6d35i" path="res://Framework/Addons/TweenTool/Scripts/Components/node2D_tween.gd" id="5_w43w7"]
+[ext_resource type="Script" uid="uid://dby7depabb4fv" path="res://Framework/Addons/TweenTool/Scripts/TweenResources/canvas_item_tween.gd" id="6_q2dc5"]
+[ext_resource type="Script" uid="uid://c0eq70gyg7rhf" path="res://Framework/Addons/TweenTool/Scripts/Components/control_tween.gd" id="7_w86pw"]
 
 [sub_resource type="Animation" id="Animation_q2dc5"]
 resource_name = "POP"
