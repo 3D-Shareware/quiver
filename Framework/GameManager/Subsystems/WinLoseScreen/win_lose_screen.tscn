@@ -83,6 +83,7 @@ texture = ExtResource("6_7cx1w")
 [node name="DifficultyStatDisplay" parent="HBoxContainer" unique_id=1576298840 instance=ExtResource("4_r143f")]
 unique_name_in_owner = true
 layout_mode = 2
+display_as_percent = true
 display_text = "Difficulty: "
 
 [node name="Icon" parent="HBoxContainer/DifficultyStatDisplay" index="1" unique_id=1080392551]
