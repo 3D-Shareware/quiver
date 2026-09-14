@@ -16,7 +16,8 @@ func _physics_process(_delta: float) -> void:
 
 ## YOUR TASK: Figure out how to add THIS MicroGame into the 'MicroGameQueue'
 ## HINT: Look in game_manager.tscn and find the 'MicroGameQueue'. Remember
-## to look at the editor on the right-hand side of your screen ------------>
+## to look at the editor on the right-hand side of your screen ------------------------------------------------>
 ## There's a funny array there that you can modify >:)
+## Second hint: Drag & Drop
 ##
 ## If you did this correctly, you should see it show up when you run the game!
