@@ -1,6 +1,6 @@
 class_name FloatStatDisplay extends Control
 
-@export var display_as_int : bool = false
+@export var display_as_percent : bool = false
 @export var display_text : String = ""
 
 @onready var counter: RichTextLabel = %Counter as RichTextLabel
@@ -40,7 +40,7 @@ func do_anim(target_val : float) -> void:
 
 
 func format_counter_text(val : float) -> String:
-	if display_as_int:
+	if display_as_percent:
 		return display_text + '%.0f' % (val * 100) + "%"
 	else:
 		return display_text + '%.0f' % val
