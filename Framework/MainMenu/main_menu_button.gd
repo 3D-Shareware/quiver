@@ -62,7 +62,10 @@ static func intro_all_buttons(all_buttons : Array[MainMenuButton]) -> void:
 		# dont delay first button tween
 		if button != all_buttons.get(0):
 			# have to call get_tree() on button since this is a static func :)
-			await button.get_tree().create_timer(INTRO_SEQUENCE_COOLDOWN).timeout
+			var process_always : bool = true
+			if button.process_mode == ProcessMode.PROCESS_MODE_PAUSABLE:
+				process_always = false
+			await button.get_tree().create_timer(INTRO_SEQUENCE_COOLDOWN, process_always).timeout
 		button.play_intro()
 
 
@@ -109,7 +112,7 @@ func play_hover_tween(tween : ControlTween) -> void:
 	tween.do_tween()
 	# this looks fucked but it creates a small cooldown where the tweens cant 
 	# rapidly toggle hover on -> hover off -> hover on
-	await get_tree().create_timer(RAPID_TOGGLE_GATE_DURATION).timeout
+	await get_tree().create_timer(RAPID_TOGGLE_GATE_DURATION, false).timeout
 	hover_state = HoverState.CAN_BE_HOVERED
 
 

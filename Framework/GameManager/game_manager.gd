@@ -64,7 +64,7 @@ func switch_scene_to_packed(scene : PackedScene) -> void:
 	if get_tree().paused == false:
 		pause_game()
 		await fade_to_black.do_tween()
-		
+	
 	get_tree().change_scene_to_packed(scene)
 	
 	await fade_from_black.do_tween()

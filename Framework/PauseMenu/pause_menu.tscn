@@ -7,7 +7,7 @@
 
 [sub_resource type="Gradient" id="Gradient_5vvqk"]
 offsets = PackedFloat32Array(0.2320442, 0.35359117, 0.73480666)
-colors = PackedColorArray(1, 1, 1, 0.7019608, 1, 1, 1, 0.58563536, 1, 1, 1, 0)
+colors = PackedColorArray(0.34008586, 0.1535201, 0.4064291, 0.3019608, 0.3882353, 0.12156863, 0.4862745, 0.25490198, 0.32083258, 0.07789933, 0.39988858, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
 gradient = SubResource("Gradient_5vvqk")
@@ -67,13 +67,13 @@ metadata/_custom_type_script = "uid://c0eq70gyg7rhf"
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2043955883]
 z_index = 4096
 anchors_preset = -1
-anchor_left = -0.16700001
+anchor_left = -0.15300001
 anchor_top = 0.272
-anchor_right = 0.535
+anchor_right = 0.437
 anchor_bottom = 0.716
-offset_left = 0.38401794
+offset_left = 0.25601196
 offset_top = -0.25601196
-offset_right = -0.32000732
+offset_right = 0.57598877
 offset_bottom = 0.031982422
 grow_horizontal = 2
 grow_vertical = 2

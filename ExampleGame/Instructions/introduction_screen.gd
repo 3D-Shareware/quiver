@@ -10,7 +10,7 @@ signal can_start
 func do_introduction() -> void:
 	mouse_animation_player.play("MOUSE")
 	pop_animation_player.play("POP")
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(3, false).timeout
 	disappear.do_tween()
 	await disappear.tween.finished
 	can_start.emit()
