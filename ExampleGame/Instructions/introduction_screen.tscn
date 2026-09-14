@@ -178,7 +178,7 @@ script = ExtResource("1_4l27e")
 [node name="Pop" type="Sprite2D" parent="." unique_id=776488977]
 texture_filter = 1
 position = Vector2(0, 164)
-scale = Vector2(4.3998814, 4.3998814)
+scale = Vector2(4.0414686, 4.0414686)
 texture = ExtResource("1_esqfm")
 hframes = 2
 
@@ -213,8 +213,8 @@ metadata/_custom_type_script = "uid://cv1tqomq6d35i"
 
 [node name="Mouse" type="Sprite2D" parent="." unique_id=991308480]
 texture_filter = 1
-position = Vector2(-3.5158768, -124)
-rotation = -0.035460785
+position = Vector2(-0.5844146, -124)
+rotation = 0.06686655
 scale = Vector2(4, 4)
 texture = ExtResource("4_4l27e")
 hframes = 2
