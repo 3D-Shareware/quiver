@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c57jn4q2xe3vy"]
 
 [ext_resource type="Script" uid="uid://no0u287dsx60" path="res://Framework/MainMenu/main_menu_button.gd" id="1_bskqj"]
-[ext_resource type="Script" uid="uid://c0eq70gyg7rhf" path="res://Framework/Addons/Effect_Components/Scripts/Components/control_tween.gd" id="2_lqlyn"]
-[ext_resource type="Script" uid="uid://cdere083tmmuo" path="res://Framework/Addons/Effect_Components/Scripts/TweenResources/offset_transform_tween.gd" id="3_hiv1w"]
+[ext_resource type="Script" uid="uid://c0eq70gyg7rhf" path="res://Framework/Addons/TweenTool/Scripts/Components/control_tween.gd" id="2_lqlyn"]
+[ext_resource type="Script" uid="uid://cdere083tmmuo" path="res://Framework/Addons/TweenTool/Scripts/TweenResources/offset_transform_tween.gd" id="3_hiv1w"]
 
 [sub_resource type="Resource" id="Resource_g4v7s"]
 script = ExtResource("3_hiv1w")
@@ -43,7 +43,6 @@ end_offset_scale = Vector2(1, 1)
 metadata/_custom_type_script = "uid://cdere083tmmuo"
 
 [node name="Button" type="Button" unique_id=1854378265 node_paths=PackedStringArray("intro", "outro", "start_hover_effect", "end_hover_effect", "press_effect", "release_effect")]
-anchors_preset = -1
 anchor_right = 0.22200002
 anchor_bottom = 0.074
 offset_right = 0.25598145

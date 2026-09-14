@@ -5,8 +5,13 @@ extends Node
 @onready var microgame_queue: MicrogameQueue = %MicrogameQueue as MicrogameQueue
 @onready var difficulty_manager: DifficultyManager = %DifficultyManager as DifficultyManager
 @onready var save_data_manager: SaveDataManager = %SaveDataManager as SaveDataManager
+@onready var win_lose_screen: WinLoseScreen = %WinLoseScreen
 
+const MAIN_MENU = preload("uid://da4hhvghhnoi8")
+
+## For microgames, use the GameManager.win() func instead of emitting this signal manually
 signal game_won
+## For microgames, use the GameManager.lose() func instead of emitting this signal manually
 signal game_lost
 
 func _ready() -> void:
@@ -15,52 +20,84 @@ func _ready() -> void:
 	game_won.connect(save_data_manager._handle_won_game)
 	game_lost.connect(save_data_manager._handle_lost_game)
 	difficulty_manager.difficulty_changed.connect(save_data_manager._on_difficulty_chnaged)
+	
+	save_data_manager.save_data.difficulty_changed.connect(win_lose_screen._on_difficulty_changed)
+	save_data_manager.save_data.wins_changed.connect(win_lose_screen._on_wins_changed)
+	save_data_manager.save_data.lives_changed.connect(win_lose_screen._on_lives_changed)
 
-
+## DO NOT MANUALLY USE THIS IN YOUR MICROGAME
 func unpause_game() -> void:
 	get_tree().paused = false
 
 
+## DO NOT MANUALLY USE THIS IN YOUR MICROGAME
 func pause_game() -> void:
+	#var tween : Tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	#tween.tween_property(Engine, "time_scale", target_scale, duration)
+	#tween.set_ignore_time_scale()
 	get_tree().paused = true
 
 
 func start_microgame() -> void:
 	_switch_to_next_microgame()
+	save_data_manager.save_data.clear()
 
 
 func switch_scene_to_packed(scene : PackedScene) -> void:
-	pause_game()
-	fade_to_black.do_tween()
-	await fade_to_black.tween.finished
-	
+	if get_tree().paused == false:
+		pause_game()
+		await fade_to_black.do_tween()
+		
 	get_tree().change_scene_to_packed(scene)
 	
-	fade_from_black.do_tween()
-	await fade_from_black.tween.finished
+	await fade_from_black.do_tween()
 	unpause_game()
 
 
 func lose() -> void:
-	pause_game()
+	# fade out current microgame
+	await _switch_from_current_microgame()
+	
 	game_lost.emit()
+	
+	# show current player stats
+	await win_lose_screen.play_anim()
+	
+	# switch to next microgame
 	_switch_to_next_microgame()
-	unpause_game()
 
 
 func win() -> void:
-	pause_game()
+	# fade out current microgame
+	await _switch_from_current_microgame()
+	
 	game_won.emit()
+	
+	# show current player stats
+	await win_lose_screen.play_anim()
+	
+	# switch to next microgame
 	_switch_to_next_microgame()
-	unpause_game()
+
+
+func _switch_from_current_microgame() -> void:
+	await fade_to_black.do_tween()
+	microgame_queue.finish_game()
+	get_tree().current_scene.queue_free()
+	pause_game()
+	await fade_from_black.do_tween()
+
 
 
 func _switch_to_next_microgame() -> void:
 	# Reset the mouse cursor to default (so each game can have their own)
 	Input.set_custom_mouse_cursor(null)
 	
-	fade_to_black.do_tween()
-	await fade_to_black.tween.finished
+	await fade_to_black.do_tween()
+	
+	if save_data_manager.save_data.lives <= 0:
+		switch_scene_to_packed(MAIN_MENU)
+		return
 	
 	var next_packed_scene : PackedScene = await microgame_queue.get_next_game()
 	var next_microgame : Node = next_packed_scene.instantiate()
@@ -73,5 +110,5 @@ func _switch_to_next_microgame() -> void:
 	
 	get_tree().change_scene_to_node(next_microgame)
 	
-	fade_from_black.do_tween()
-	await fade_from_black.tween.finished
+	await fade_from_black.do_tween()
+	unpause_game()

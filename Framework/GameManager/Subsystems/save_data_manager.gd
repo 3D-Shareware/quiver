@@ -1,6 +1,6 @@
 class_name SaveDataManager extends Node
 
-@onready var save_data = SaveData.new()
+@onready var save_data : SaveData = SaveData.new()
 
 func _ready() -> void:
 	# stop game from immediately closing
