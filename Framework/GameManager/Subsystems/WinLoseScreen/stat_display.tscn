@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://ch5hcarf4xd62"]
+
+[ext_resource type="Script" uid="uid://cjwq603qf1r5u" path="res://Framework/GameManager/Subsystems/WinLoseScreen/stat_display.gd" id="1_0gsjc"]
+
+[node name="StatDisplay" type="HBoxContainer" unique_id=190774592]
+anchors_preset = -1
+anchor_right = 0.44477782
+anchor_bottom = 0.099234596
+offset_right = -0.38401794
+offset_bottom = -0.3040161
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_0gsjc")
+metadata/_edit_use_anchors_ = true
+
+[node name="Counter" type="RichTextLabel" parent="." unique_id=899343529]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+fit_content = true
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1080392551]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ProgressBar" type="TextureProgressBar" parent="." unique_id=189914036]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3

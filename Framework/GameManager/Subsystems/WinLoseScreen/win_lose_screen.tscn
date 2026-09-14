@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bbooefhwr82h6"]
+
+[ext_resource type="Script" uid="uid://duwov4e18wdfj" path="res://Framework/GameManager/Subsystems/WinLoseScreen/win_lose_screen.gd" id="1_qhakw"]
+[ext_resource type="Script" uid="uid://c0eq70gyg7rhf" path="res://Framework/Addons/TweenTool/Scripts/Components/control_tween.gd" id="2_r143f"]
+[ext_resource type="Script" uid="uid://dby7depabb4fv" path="res://Framework/Addons/TweenTool/Scripts/TweenResources/canvas_item_tween.gd" id="3_6lfv7"]
+[ext_resource type="PackedScene" uid="uid://ch5hcarf4xd62" path="res://Framework/GameManager/Subsystems/WinLoseScreen/stat_display.tscn" id="4_r143f"]
+
+[sub_resource type="Resource" id="Resource_ao8ti"]
+script = ExtResource("3_6lfv7")
+start_modulate = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://dby7depabb4fv"
+
+[sub_resource type="Resource" id="Resource_agcvd"]
+script = ExtResource("3_6lfv7")
+end_modulate = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://dby7depabb4fv"
+
+[node name="WinLoseScreen" type="Control" unique_id=213006064]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qhakw")
+metadata/_edit_use_anchors_ = true
+
+[node name="BigAssBlackRectangle" type="ColorRect" parent="." unique_id=1290646453]
+modulate = Color(1, 1, 1, 0)
+z_index = 4096
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_transform_enabled = true
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="FadeToBlack" type="Node" parent="BigAssBlackRectangle" unique_id=2061811576 node_paths=PackedStringArray("affected_node")]
+unique_name_in_owner = true
+script = ExtResource("2_r143f")
+affected_node = NodePath("..")
+canvas_item_tween = SubResource("Resource_ao8ti")
+
+[node name="FadeFromBlack" type="Node" parent="BigAssBlackRectangle" unique_id=1742554702 node_paths=PackedStringArray("affected_node")]
+unique_name_in_owner = true
+script = ExtResource("2_r143f")
+affected_node = NodePath("..")
+canvas_item_tween = SubResource("Resource_agcvd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=200354204]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2578125
+anchor_top = 0.3580247
+anchor_right = 0.7018125
+anchor_bottom = 0.65402466
+offset_right = 0.5119629
+offset_bottom = 0.19200134
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="LivesStatDisplay" parent="VBoxContainer" unique_id=190774592 instance=ExtResource("4_r143f")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="WinsStatDisplay" parent="VBoxContainer" unique_id=501306093 instance=ExtResource("4_r143f")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DifficultyStatDisplay" parent="VBoxContainer" unique_id=220306901 instance=ExtResource("4_r143f")]
+unique_name_in_owner = true
+layout_mode = 2

@@ -25,6 +25,9 @@ func unpause_game() -> void:
 
 ## DO NOT MANUALLY USE THIS IN YOUR MICROGAME
 func pause_game() -> void:
+	#var tween : Tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	#tween.tween_property(Engine, "time_scale", target_scale, duration)
+	#tween.set_ignore_time_scale()
 	get_tree().paused = true
 
 
