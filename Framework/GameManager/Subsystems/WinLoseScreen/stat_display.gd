@@ -37,8 +37,6 @@ func do_anim(target_val : float) -> void:
 		await do_decrement_counter_anim(target_val)
 	else:
 		await get_tree().create_timer(0.5).timeout
-	
-	await fade_out()
 
 
 func format_counter_text(val : float) -> String:

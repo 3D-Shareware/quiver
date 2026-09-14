@@ -52,31 +52,39 @@ script = ExtResource("2_r143f")
 affected_node = NodePath("..")
 canvas_item_tween = SubResource("Resource_agcvd")
 
-[node name="LivesStatDisplay" parent="." unique_id=1394400204 instance=ExtResource("4_r143f")]
-unique_name_in_owner = true
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=922093439]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LivesStatDisplay" parent="HBoxContainer" unique_id=1394400204 instance=ExtResource("4_r143f")]
+unique_name_in_owner = true
+layout_mode = 2
 display_text = "Lives: "
 
-[node name="Icon" parent="LivesStatDisplay" index="1" unique_id=1080392551]
+[node name="Icon" parent="HBoxContainer/LivesStatDisplay" index="1" unique_id=1080392551]
 texture = ExtResource("5_agcvd")
 
-[node name="WinsStatDisplay" parent="." unique_id=1129047229 instance=ExtResource("4_r143f")]
+[node name="WinsStatDisplay" parent="HBoxContainer" unique_id=1129047229 instance=ExtResource("4_r143f")]
 unique_name_in_owner = true
-layout_mode = 1
+layout_mode = 2
 display_text = "Wins: "
 
-[node name="Icon" parent="WinsStatDisplay" index="1" unique_id=1080392551]
+[node name="Icon" parent="HBoxContainer/WinsStatDisplay" index="1" unique_id=1080392551]
 texture = ExtResource("6_7cx1w")
 
-[node name="DifficultyStatDisplay" parent="." unique_id=1576298840 instance=ExtResource("4_r143f")]
+[node name="DifficultyStatDisplay" parent="HBoxContainer" unique_id=1576298840 instance=ExtResource("4_r143f")]
 unique_name_in_owner = true
-layout_mode = 1
+layout_mode = 2
 display_as_int = true
 display_text = "Difficulty: "
 
-[node name="Icon" parent="DifficultyStatDisplay" index="1" unique_id=1080392551]
+[node name="Icon" parent="HBoxContainer/DifficultyStatDisplay" index="1" unique_id=1080392551]
 texture = ExtResource("7_m50n3")
 
-[editable path="LivesStatDisplay"]
-[editable path="WinsStatDisplay"]
-[editable path="DifficultyStatDisplay"]
+[editable path="HBoxContainer/LivesStatDisplay"]
+[editable path="HBoxContainer/WinsStatDisplay"]
+[editable path="HBoxContainer/DifficultyStatDisplay"]

@@ -71,3 +71,13 @@ metadata/_custom_type_script = "uid://cxpxg24xypn71"
 [node name="WinLoseScreen" parent="." unique_id=449922744 instance=ExtResource("8_vy41y")]
 unique_name_in_owner = true
 visible = false
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1445678169]
+z_index = -4096
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

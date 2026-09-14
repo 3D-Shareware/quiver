@@ -28,9 +28,16 @@ func play_anim() -> void:
 	self.visible = true
 	
 	# do anims
-	await wins_stat_display.do_anim(new_save_data.wins)
 	await lives_stat_display.do_anim(new_save_data.lives)
+	await wins_stat_display.do_anim(new_save_data.wins)
 	await difficulty_stat_display.do_anim(new_save_data.current_difficulty)
+	
+	
+	get_tree().create_timer(0.5)
+	
+	lives_stat_display.fade_out()
+	wins_stat_display.fade_out()
+	await difficulty_stat_display.fade_out()
 	
 	self.visible = false
 	
