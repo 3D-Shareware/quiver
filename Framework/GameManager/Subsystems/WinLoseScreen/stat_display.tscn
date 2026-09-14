@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ch5hcarf4xd62"]
 
 [ext_resource type="Script" uid="uid://cjwq603qf1r5u" path="res://Framework/GameManager/Subsystems/WinLoseScreen/stat_display.gd" id="1_0gsjc"]
-[ext_resource type="Texture2D" uid="uid://bm32gvakv8fw6" path="res://Framework/Assets/ImportedIcons/arrow-right-03.png" id="2_i7nf1"]
+[ext_resource type="Texture2D" uid="uid://bm32gvakv8fw6" path="res://Framework/Assets/ImportedIcons/Arrows/arrow-right-03.png" id="2_i7nf1"]
 [ext_resource type="Theme" uid="uid://boxd477ugoae4" path="res://Framework/Assets/default_theme.tres" id="2_wvsko"]
 [ext_resource type="Script" uid="uid://c0eq70gyg7rhf" path="res://Framework/Addons/TweenTool/Scripts/Components/control_tween.gd" id="4_xfeyx"]
 [ext_resource type="Script" uid="uid://cct0slx0ktj60" path="res://Framework/Addons/TweenTool/Scripts/TweenResources/transform_tween.gd" id="5_p13os"]

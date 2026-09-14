@@ -37,7 +37,7 @@ offset_right = -0.3199997
 offset_bottom = -0.1760025
 offset_transform_enabled = true
 mouse_filter = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.07058824, 0.07058824, 0.07058824, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="FadeToBlack" type="Node" parent="BigAssBlackRectangle" unique_id=2104804170 node_paths=PackedStringArray("affected_node")]
@@ -72,7 +72,7 @@ metadata/_custom_type_script = "uid://cxpxg24xypn71"
 unique_name_in_owner = true
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1445678169]
+[node name="Background" type="ColorRect" parent="." unique_id=1445678169]
 z_index = -4096
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,4 +80,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.06879827, 0.06879828, 0.06879828, 1)
