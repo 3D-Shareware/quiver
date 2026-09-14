@@ -20,24 +20,18 @@ func _ready() -> void:
 
 func play_anim() -> void:
 	# setting the stat displays up
-	lives_stat_display.set_ui_with_no_anim(1)
-	wins_stat_display.set_ui_with_no_anim(-1)
+	lives_stat_display.set_ui_with_no_anim(old_save_data.lives)
+	wins_stat_display.set_ui_with_no_anim(old_save_data.wins)
 	difficulty_stat_display.set_ui_with_no_anim(old_save_data.current_difficulty)
 	
 	# do fade in
 	self.visible = true
-	#fade_from_black.do_tween()
-	#await fade_from_black.tween_finished
 	
-	# do anims if vals differ
+	# do anims
 	await wins_stat_display.do_anim(new_save_data.wins)
 	await lives_stat_display.do_anim(new_save_data.lives)
 	await difficulty_stat_display.do_anim(new_save_data.current_difficulty)
 	
-	# pause then fade to black
-	#await get_tree().create_timer(PAUSE_AMOUNT).timeout
-	#fade_to_black.do_tween()
-	#await fade_to_black.tween_finished
 	self.visible = false
 
 
