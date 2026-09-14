@@ -112,7 +112,7 @@ func play_hover_tween(tween : ControlTween) -> void:
 	tween.do_tween()
 	# this looks fucked but it creates a small cooldown where the tweens cant 
 	# rapidly toggle hover on -> hover off -> hover on
-	await get_tree().create_timer(RAPID_TOGGLE_GATE_DURATION, false).timeout
+	await get_tree().create_timer(RAPID_TOGGLE_GATE_DURATION).timeout
 	hover_state = HoverState.CAN_BE_HOVERED
 
 
