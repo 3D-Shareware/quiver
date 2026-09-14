@@ -16,6 +16,7 @@ signal game_won
 signal game_lost
 
 var current_pause_menu : PauseMenu
+var is_ending_microgame : bool = false
 
 func _ready() -> void:
 	# connecting the microgame_queue to the difficult_manager
@@ -73,6 +74,9 @@ func switch_scene_to_packed(scene : PackedScene) -> void:
 
 
 func lose() -> void:
+	if is_ending_microgame:
+		return
+	is_ending_microgame = true
 	# fade out current microgame
 	await _switch_from_current_microgame()
 	
@@ -83,9 +87,13 @@ func lose() -> void:
 	
 	# switch to next microgame
 	_switch_to_next_microgame()
+	is_ending_microgame = false
 
 
 func win() -> void:
+	if is_ending_microgame:
+		return
+	is_ending_microgame = true
 	# fade out current microgame
 	await _switch_from_current_microgame()
 	
@@ -96,6 +104,7 @@ func win() -> void:
 	
 	# switch to next microgame
 	_switch_to_next_microgame()
+	is_ending_microgame = false
 
 
 func _switch_from_current_microgame() -> void:
@@ -108,6 +117,7 @@ func _switch_from_current_microgame() -> void:
 
 
 func _switch_to_next_microgame() -> void:
+	
 	# Reset the mouse cursor to default (so each game can have their own)
 	Input.set_custom_mouse_cursor(null)
 	
@@ -133,3 +143,4 @@ func _switch_to_next_microgame() -> void:
 	
 	if current_pause_menu == null:
 		unpause_game()
+	
