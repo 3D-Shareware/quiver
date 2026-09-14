@@ -15,10 +15,16 @@ func _ready() -> void:
 	_setup_new_stage()
 
 
+func finish_game() -> void:
+	if _microgames_in_stage.is_empty():
+		await _finish_stage()
+
+
 func get_next_game() -> PackedScene:
 	var next_game : PackedScene = _microgames_in_stage.pop_front()
 	# player finished all levels in stage
 	if next_game == null:
+		printerr("%s: next microgame was null, this means get_next_game() was run before finish_stage()")
 		await _finish_stage()
 		next_game = _microgames_in_stage.pop_front()
 	return next_game

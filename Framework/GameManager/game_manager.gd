@@ -82,6 +82,7 @@ func win() -> void:
 
 func _switch_from_current_microgame() -> void:
 	await fade_to_black.do_tween()
+	microgame_queue.finish_game()
 	get_tree().current_scene.queue_free()
 	pause_game()
 	await fade_from_black.do_tween()

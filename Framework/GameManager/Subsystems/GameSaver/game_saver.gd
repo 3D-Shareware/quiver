@@ -6,6 +6,10 @@ const SAVE_FILE_NAME : String = "user://game_data.save"
 static func save_data_to_file(save_data : SaveData) -> void:
 	var json_string : String = JSON.stringify(save_data.get_as_dict(), "\t")
 	
+	# don't save data if stored wins > current wins
+	if GameSaver.get_save_data().wins > save_data.wins:
+		return
+	
 	var file : FileAccess = FileAccess.open(SAVE_FILE_NAME, FileAccess.WRITE)
 	
 	if file == null:
@@ -35,7 +39,7 @@ static func get_save_data() -> SaveData:
 	var error : Error = json.parse(json_string)
 	
 	if error != Error.OK:
-		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+		push_warning("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 		return null
 	
 	# checking that our data is our chosen type

@@ -43,7 +43,7 @@ func do_anim(target_val : float) -> void:
 
 func format_counter_text(val : float) -> String:
 	if display_as_int:
-		return display_text + '%.0f' % (val * 100)
+		return display_text + '%.0f' % (val * 100) + "%"
 	else:
 		return display_text + '%.0f' % val
 		

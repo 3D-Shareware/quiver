@@ -33,6 +33,10 @@ func play_anim() -> void:
 	await difficulty_stat_display.do_anim(new_save_data.current_difficulty)
 	
 	self.visible = false
+	
+	old_save_data.lives = new_save_data.lives
+	old_save_data.wins = new_save_data.wins
+	old_save_data.current_difficulty = new_save_data.current_difficulty
 
 
 #region recording whether values have changed

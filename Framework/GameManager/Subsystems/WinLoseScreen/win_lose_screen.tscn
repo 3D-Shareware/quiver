@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://c0eq70gyg7rhf" path="res://Framework/Addons/TweenTool/Scripts/Components/control_tween.gd" id="2_r143f"]
 [ext_resource type="Script" uid="uid://dby7depabb4fv" path="res://Framework/Addons/TweenTool/Scripts/TweenResources/canvas_item_tween.gd" id="3_6lfv7"]
 [ext_resource type="PackedScene" uid="uid://ch5hcarf4xd62" path="res://Framework/GameManager/Subsystems/WinLoseScreen/stat_display.tscn" id="4_r143f"]
+[ext_resource type="Texture2D" uid="uid://d1vn1rupqcnir" path="res://Framework/Assets/ImportedIcons/hearts.png" id="5_agcvd"]
+[ext_resource type="Texture2D" uid="uid://b4dhg1hc1ty0v" path="res://Framework/Assets/ImportedIcons/trophy.png" id="6_7cx1w"]
+[ext_resource type="Texture2D" uid="uid://s3wfdvwhvujw" path="res://Framework/Assets/ImportedIcons/demon-02.png" id="7_m50n3"]
 
 [sub_resource type="Resource" id="Resource_ao8ti"]
 script = ExtResource("3_6lfv7")
@@ -54,16 +57,25 @@ unique_name_in_owner = true
 layout_mode = 1
 display_text = "Lives: "
 
+[node name="Icon" parent="LivesStatDisplay" index="1" unique_id=1080392551]
+texture = ExtResource("5_agcvd")
+
 [node name="WinsStatDisplay" parent="." unique_id=1129047229 instance=ExtResource("4_r143f")]
 unique_name_in_owner = true
 layout_mode = 1
 display_text = "Wins: "
+
+[node name="Icon" parent="WinsStatDisplay" index="1" unique_id=1080392551]
+texture = ExtResource("6_7cx1w")
 
 [node name="DifficultyStatDisplay" parent="." unique_id=1576298840 instance=ExtResource("4_r143f")]
 unique_name_in_owner = true
 layout_mode = 1
 display_as_int = true
 display_text = "Difficulty: "
+
+[node name="Icon" parent="DifficultyStatDisplay" index="1" unique_id=1080392551]
+texture = ExtResource("7_m50n3")
 
 [editable path="LivesStatDisplay"]
 [editable path="WinsStatDisplay"]

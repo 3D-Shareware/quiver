@@ -38,8 +38,8 @@ func clear() -> void:
 func get_as_dict() -> Dictionary[String, Variant]:
 	return {
 		"wins": wins,
-		"lives": lives,
-		"current_difficulty": current_difficulty,
+		#"lives": lives,
+		#"current_difficulty": current_difficulty,
 	}
 
 
@@ -49,8 +49,8 @@ static func from_dict(data : Dictionary) -> SaveData:
 	
 	 #if the data does not have any of these arguments, the values get set to the default 
 	# param (0) passed into the get func, so this is safe!
-	save_data.wins = data.get("wins", 0)
-	save_data.lives = data.get("lives", 0)
-	save_data.current_difficulty = data.get("current_difficulty", 0)
+	save_data.wins = data.get("wins", DEFAULT_WINS)
+	save_data.lives = data.get("lives", DEFAULT_LIVES)
+	save_data.current_difficulty = data.get("current_difficulty", DEFAULT_DIFFICULTY)
 	
 	return save_data
