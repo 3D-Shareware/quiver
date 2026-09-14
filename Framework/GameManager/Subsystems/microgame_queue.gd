@@ -10,6 +10,11 @@ var _num_completed_stages : int = 0
 signal stage_finished(num_completed : int)
 
 
+func clear() -> void:
+	_num_completed_stages = 0
+	_setup_new_stage()
+
+
 func _ready() -> void:
 	_validate_microgames()
 	_setup_new_stage()

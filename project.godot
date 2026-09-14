@@ -28,6 +28,7 @@ window/stretch/aspect="expand"
 [file_customization]
 
 folder_colors={
+"res://AnotherExampleGame/": "orange",
 "res://ExampleGame/": "pink",
 "res://Framework/": "gray",
 "res://Framework/Assets/": "purple",
