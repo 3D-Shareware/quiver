@@ -129,4 +129,6 @@ func _switch_to_next_microgame() -> void:
 	get_tree().change_scene_to_node(next_microgame)
 	
 	await fade_from_black.do_tween()
-	unpause_game()
+	
+	if current_pause_menu == null:
+		unpause_game()
