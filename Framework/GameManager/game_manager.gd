@@ -33,7 +33,6 @@ func _physics_process(_delta: float) -> void:
 	if !Input.is_action_just_pressed("pause"):
 		return
 	if get_tree().current_scene == null || get_tree().current_scene is not MicroGame:
-		print('not a microgame')
 		return
 	if current_pause_menu != null:
 		return
