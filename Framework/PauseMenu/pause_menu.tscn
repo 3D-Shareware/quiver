@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://b83ydhdbt5js"]
+
+[ext_resource type="Script" uid="uid://bl3qlpf15bh17" path="res://Framework/PauseMenu/pause_menu.gd" id="1_sttxj"]
+[ext_resource type="Script" uid="uid://c0eq70gyg7rhf" path="res://Framework/Addons/TweenTool/Scripts/Components/control_tween.gd" id="2_5vvqk"]
+[ext_resource type="PackedScene" uid="uid://c57jn4q2xe3vy" path="res://Framework/MainMenu/main_menu_button.tscn" id="2_jtpg4"]
+[ext_resource type="Script" uid="uid://dby7depabb4fv" path="res://Framework/Addons/TweenTool/Scripts/TweenResources/canvas_item_tween.gd" id="3_q6eah"]
+
+[sub_resource type="Gradient" id="Gradient_5vvqk"]
+offsets = PackedFloat32Array(0.2320442, 0.35359117, 0.73480666)
+colors = PackedColorArray(1, 1, 1, 0.7019608, 1, 1, 1, 0.58563536, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
+gradient = SubResource("Gradient_5vvqk")
+fill = 1
+fill_from = Vector2(0, 0.50427353)
+fill_to = Vector2(1, 0.50427353)
+
+[sub_resource type="Resource" id="Resource_q6eah"]
+script = ExtResource("3_q6eah")
+start_modulate = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://dby7depabb4fv"
+
+[sub_resource type="Resource" id="Resource_5vvqk"]
+script = ExtResource("3_q6eah")
+end_modulate = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://dby7depabb4fv"
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=2042688823]
+process_mode = 3
+layer = 4000000
+script = ExtResource("1_sttxj")
+metadata/_edit_use_anchors_ = true
+
+[node name="Gradient" type="TextureRect" parent="." unique_id=2143899386]
+unique_name_in_owner = true
+z_index = 4095
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -472.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+metadata/_edit_use_anchors_ = true
+
+[node name="FadeIn" type="Node" parent="Gradient" unique_id=270743305 node_paths=PackedStringArray("affected_node")]
+unique_name_in_owner = true
+script = ExtResource("2_5vvqk")
+affected_node = NodePath("..")
+canvas_item_tween = SubResource("Resource_q6eah")
+trans_type = 7
+ease_type = 2
+tween_duration = 0.3
+metadata/_custom_type_script = "uid://c0eq70gyg7rhf"
+
+[node name="FadeOut" type="Node" parent="Gradient" unique_id=161144334 node_paths=PackedStringArray("affected_node")]
+unique_name_in_owner = true
+script = ExtResource("2_5vvqk")
+affected_node = NodePath("..")
+canvas_item_tween = SubResource("Resource_5vvqk")
+trans_type = 7
+ease_type = 2
+tween_duration = 0.3
+metadata/_custom_type_script = "uid://c0eq70gyg7rhf"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2043955883]
+z_index = 4096
+anchors_preset = -1
+anchor_left = -0.16700001
+anchor_top = 0.272
+anchor_right = 0.535
+anchor_bottom = 0.716
+offset_left = 0.38401794
+offset_top = -0.25601196
+offset_right = -0.32000732
+offset_bottom = 0.031982422
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 21
+metadata/_edit_use_anchors_ = true
+
+[node name="Resume" parent="VBoxContainer" unique_id=1854378265 instance=ExtResource("2_jtpg4")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume  "
+
+[node name="Exit" parent="VBoxContainer" unique_id=1270437504 instance=ExtResource("2_jtpg4")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit  "
+
+[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

@@ -8,11 +8,14 @@ extends Node
 @onready var win_lose_screen: WinLoseScreen = %WinLoseScreen
 
 const MAIN_MENU = preload("uid://da4hhvghhnoi8")
+const PAUSE_MENU = preload("uid://b83ydhdbt5js")
 
 ## For microgames, use the GameManager.win() func instead of emitting this signal manually
 signal game_won
 ## For microgames, use the GameManager.lose() func instead of emitting this signal manually
 signal game_lost
+
+var current_pause_menu : PauseMenu
 
 func _ready() -> void:
 	# connecting the microgame_queue to the difficult_manager
@@ -24,6 +27,20 @@ func _ready() -> void:
 	save_data_manager.save_data.difficulty_changed.connect(win_lose_screen._on_difficulty_changed)
 	save_data_manager.save_data.wins_changed.connect(win_lose_screen._on_wins_changed)
 	save_data_manager.save_data.lives_changed.connect(win_lose_screen._on_lives_changed)
+
+
+func _physics_process(_delta: float) -> void:
+	if !Input.is_action_just_pressed("pause"):
+		return
+	if get_tree().current_scene == null || get_tree().current_scene is not MicroGame:
+		print('not a microgame')
+		return
+	if current_pause_menu != null:
+		return
+	
+	current_pause_menu = PAUSE_MENU.instantiate() as PauseMenu
+	
+	get_tree().current_scene.add_child(current_pause_menu)
 
 ## DO NOT MANUALLY USE THIS IN YOUR MICROGAME
 func unpause_game() -> void:

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c302lviukvkgv" path="res://ExampleGame/Instructions/introduction_screen.gd" id="1_4l27e"]
 [ext_resource type="Texture2D" uid="uid://bri1hg8pxkjhc" path="res://ExampleGame/Instructions/Assets/Pop.png" id="1_esqfm"]
-[ext_resource type="Script" uid="uid://dtxea7wlkf3vx" path="res://Framework/Addons/Effect_Components/Scripts/Effect Sequencers/node2D_tween_sequencer.gd" id="4_1mbjn"]
+[ext_resource type="Script" uid="uid://dtxea7wlkf3vx" path="res://Framework/Addons/TweenTool/Scripts/Effect Sequencers/node2D_tween_sequencer.gd" id="4_1mbjn"]
 [ext_resource type="Texture2D" uid="uid://dqmnmg0w6evba" path="res://ExampleGame/Instructions/Assets/mouse-Sheet.png" id="4_4l27e"]
 [ext_resource type="Texture2D" uid="uid://deeqg48ya3c8e" path="res://ExampleGame/Instructions/Assets/Pop-Sheet.png" id="4_m1c35"]
 [ext_resource type="Script" uid="uid://cct0slx0ktj60" path="res://Framework/Addons/TweenTool/Scripts/TweenResources/transform_tween.gd" id="5_q2dc5"]
@@ -170,7 +170,6 @@ end_modulate = Color(1, 1, 1, 0)
 metadata/_custom_type_script = "uid://dby7depabb4fv"
 
 [node name="IntroductionScreen" type="Control" unique_id=1051301669]
-process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
@@ -179,7 +178,7 @@ script = ExtResource("1_4l27e")
 [node name="Pop" type="Sprite2D" parent="." unique_id=776488977]
 texture_filter = 1
 position = Vector2(0, 164)
-scale = Vector2(4.082015, 4.082015)
+scale = Vector2(4.1226387, 4.1226387)
 texture = ExtResource("1_esqfm")
 hframes = 2
 
@@ -214,8 +213,8 @@ metadata/_custom_type_script = "uid://cv1tqomq6d35i"
 
 [node name="Mouse" type="Sprite2D" parent="." unique_id=991308480]
 texture_filter = 1
-position = Vector2(-3.8645816, -124)
-rotation = -0.047632884
+position = Vector2(3.677463, -124)
+rotation = 0.21563414
 scale = Vector2(4, 4)
 texture = ExtResource("4_4l27e")
 hframes = 2
