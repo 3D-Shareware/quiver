@@ -5,6 +5,7 @@ extends Node
 @onready var microgame_queue: MicrogameQueue = %MicrogameQueue as MicrogameQueue
 @onready var difficulty_manager: DifficultyManager = %DifficultyManager as DifficultyManager
 @onready var save_data_manager: SaveDataManager = %SaveDataManager as SaveDataManager
+@onready var win_lose_screen: WinLoseScreen = %WinLoseScreen
 
 ## For microgames, use the GameManager.win() func instead of emitting this signal manually
 signal game_won
@@ -48,17 +49,40 @@ func switch_scene_to_packed(scene : PackedScene) -> void:
 
 
 func lose() -> void:
-	pause_game()
+	# fade out current microgame
+	await _switch_from_current_microgame()
+	
 	game_lost.emit()
+	
+	# show current player stats
+	get_tree().current_scene.queue_free()
+	await win_lose_screen.play_anim()
+	
+	# switch to next microgame
 	_switch_to_next_microgame()
 	unpause_game()
 
 
 func win() -> void:
-	pause_game()
+	# fade out current microgame
+	await _switch_from_current_microgame()
+	
 	game_won.emit()
+	
+	# show current player stats
+	await win_lose_screen.play_anim()
+	
+	# switch to next microgame
 	_switch_to_next_microgame()
 	unpause_game()
+
+
+func _switch_from_current_microgame() -> void:
+	await fade_to_black.do_tween()
+	get_tree().current_scene.queue_free()
+	pause_game()
+	await fade_from_black.do_tween()
+
 
 
 func _switch_to_next_microgame() -> void:

@@ -49,26 +49,22 @@ script = ExtResource("2_r143f")
 affected_node = NodePath("..")
 canvas_item_tween = SubResource("Resource_agcvd")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=200354204]
+[node name="LivesStatDisplay" parent="." unique_id=1394400204 instance=ExtResource("4_r143f")]
+unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.2578125
-anchor_top = 0.3580247
-anchor_right = 0.7018125
-anchor_bottom = 0.65402466
-offset_right = 0.5119629
-offset_bottom = 0.19200134
-alignment = 1
-metadata/_edit_use_anchors_ = true
+display_text = "Lives: "
 
-[node name="LivesStatDisplay" parent="VBoxContainer" unique_id=190774592 instance=ExtResource("4_r143f")]
+[node name="WinsStatDisplay" parent="." unique_id=1129047229 instance=ExtResource("4_r143f")]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+display_text = "Wins: "
 
-[node name="WinsStatDisplay" parent="VBoxContainer" unique_id=501306093 instance=ExtResource("4_r143f")]
+[node name="DifficultyStatDisplay" parent="." unique_id=1576298840 instance=ExtResource("4_r143f")]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+display_as_int = true
+display_text = "Difficulty: "
 
-[node name="DifficultyStatDisplay" parent="VBoxContainer" unique_id=220306901 instance=ExtResource("4_r143f")]
-unique_name_in_owner = true
-layout_mode = 2
+[editable path="LivesStatDisplay"]
+[editable path="WinsStatDisplay"]
+[editable path="DifficultyStatDisplay"]

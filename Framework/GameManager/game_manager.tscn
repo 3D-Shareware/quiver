@@ -69,3 +69,5 @@ script = ExtResource("7_fvqjh")
 metadata/_custom_type_script = "uid://cxpxg24xypn71"
 
 [node name="WinLoseScreen" parent="." unique_id=449922744 instance=ExtResource("8_vy41y")]
+unique_name_in_owner = true
+visible = false
