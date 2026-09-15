@@ -1,0 +1,177 @@
+[gd_scene format=3 uid="uid://cq7ugjow8p6k0"]
+
+[ext_resource type="Script" uid="uid://b8hvo8cr47ob4" path="res://Kevin/quiver_game.gd" id="1_sexei"]
+[ext_resource type="PackedScene" uid="uid://j7o1fwdabw8" path="res://Kevin/objects/player.tscn" id="2_qkw15"]
+[ext_resource type="Texture2D" uid="uid://bt1xqtbn7klqg" path="res://Kevin/assets/ui/scope.png" id="3_l5liw"]
+[ext_resource type="Shader" uid="uid://cnbxrjxqtm7fb" path="res://Kevin/shaders/scope.gdshader" id="3_q745s"]
+[ext_resource type="Script" uid="uid://cu6m4sgvkxvpu" path="res://Kevin/objects/ui/arrow_ui_center.gd" id="5_jg8o4"]
+[ext_resource type="Texture2D" uid="uid://bw1dqxennqkpl" path="res://Kevin/assets/ui/clock_naked.png" id="6_vopls"]
+[ext_resource type="Script" uid="uid://1i587l2r0iju" path="res://Kevin/objects/ui/timer.gd" id="7_exach"]
+[ext_resource type="FontFile" uid="uid://dasd24mpggck5" path="res://Kevin/assets/fonts/Canterbury.ttf" id="8_vopls"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3f5e3"]
+size = Vector3(64, 16, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sexei"]
+albedo_color = Color(0.6313726, 0.52156866, 0.25490198, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3f5e3"]
+material = SubResource("StandardMaterial3D_sexei")
+size = Vector3(64, 16, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ocnln"]
+size = Vector3(1, 16, 16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ocnln"]
+material = SubResource("StandardMaterial3D_sexei")
+size = Vector3(1, 16, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bk7jt"]
+size = Vector3(64, 1, 16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bk7jt"]
+material = SubResource("StandardMaterial3D_sexei")
+size = Vector3(64, 1, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rn6me"]
+size = Vector3(1, 16, 16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rn6me"]
+material = SubResource("StandardMaterial3D_sexei")
+size = Vector3(1, 16, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q745s"]
+shader = ExtResource("3_q745s")
+
+[sub_resource type="Theme" id="Theme_llrvo"]
+default_font = ExtResource("8_vopls")
+RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.78431374)
+RichTextLabel/constants/shadow_offset_x = 4
+RichTextLabel/constants/shadow_offset_y = 4
+RichTextLabel/constants/shadow_outline_size = 8
+
+[node name="Quiver Game" type="Node3D" unique_id=692705577]
+script = ExtResource("1_sexei")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=153213811]
+
+[node name="Player" parent="Node3D" unique_id=492589649 instance=ExtResource("2_qkw15")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 8, 4, 0)
+
+[node name="Side Wall" type="StaticBody3D" parent="Node3D" unique_id=1590285864]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Side Wall" unique_id=220624954]
+shape = SubResource("BoxShape3D_3f5e3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Side Wall" unique_id=666127026]
+mesh = SubResource("BoxMesh_3f5e3")
+
+[node name="Side Wall2" type="StaticBody3D" parent="Node3D" unique_id=507107103]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Side Wall2" unique_id=525289403]
+shape = SubResource("BoxShape3D_3f5e3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Side Wall2" unique_id=513147424]
+mesh = SubResource("BoxMesh_3f5e3")
+
+[node name="Back Wall" type="StaticBody3D" parent="Node3D" unique_id=1163390082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 8, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Back Wall" unique_id=279876043]
+shape = SubResource("BoxShape3D_ocnln")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Back Wall" unique_id=1445486047]
+mesh = SubResource("BoxMesh_ocnln")
+
+[node name="THE FLOOR" type="StaticBody3D" parent="Node3D" unique_id=603382600]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/THE FLOOR" unique_id=244790908]
+shape = SubResource("BoxShape3D_bk7jt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/THE FLOOR" unique_id=1920367915]
+mesh = SubResource("BoxMesh_bk7jt")
+
+[node name="The Ceiling" type="StaticBody3D" parent="Node3D" unique_id=732359373]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/The Ceiling" unique_id=1399029237]
+shape = SubResource("BoxShape3D_bk7jt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/The Ceiling" unique_id=52640674]
+mesh = SubResource("BoxMesh_bk7jt")
+
+[node name="Entrance Wall" type="StaticBody3D" parent="Node3D" unique_id=789387942]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 8, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Entrance Wall" unique_id=461607460]
+shape = SubResource("BoxShape3D_rn6me")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Entrance Wall" unique_id=1130960903]
+mesh = SubResource("BoxMesh_rn6me")
+
+[node name="Light" type="OmniLight3D" parent="Node3D" unique_id=667316460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 15, 0)
+light_energy = 10.0
+omni_range = 100.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=517828551]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=86474903]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="Scope" type="Sprite2D" parent="CanvasLayer/Control" unique_id=739796670]
+modulate = Color(1, 1, 1, 0.88235295)
+texture_filter = 1
+material = SubResource("ShaderMaterial_q745s")
+position = Vector2(576, 324)
+scale = Vector2(4, 4)
+texture = ExtResource("3_l5liw")
+
+[node name="Arrow UI Center" type="Node2D" parent="CanvasLayer/Control" unique_id=19710324]
+position = Vector2(1104, 600)
+script = ExtResource("5_jg8o4")
+
+[node name="Timer" type="Sprite2D" parent="CanvasLayer/Control" unique_id=427524924]
+texture_filter = 1
+position = Vector2(48, 600)
+scale = Vector2(4, 4)
+texture = ExtResource("6_vopls")
+script = ExtResource("7_exach")
+
+[node name="Shadow" type="Sprite2D" parent="CanvasLayer/Control/Timer" unique_id=1210597486]
+modulate = Color(0, 0, 0, 0.78431374)
+z_index = -1
+position = Vector2(1, 1)
+texture = ExtResource("6_vopls")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/Timer" unique_id=1032165669]
+offset_left = 10.5
+offset_top = -6.5
+offset_right = 371.5
+offset_bottom = 52.5
+scale = Vector2(0.25, 0.25)
+mouse_filter = 2
+theme = SubResource("Theme_llrvo")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "15"
+
+[node name="Timer" type="Timer" parent="CanvasLayer/Control/Timer" unique_id=1151403309]
+
+[node name="Quick Loss Timer" type="Timer" parent="." unique_id=1494442583]
+wait_time = 0.1
+one_shot = true
+
+[node name="Win or Lose Timer" type="Timer" parent="." unique_id=1283844682]
+wait_time = 2.5
+one_shot = true
+
+[connection signal="timeout" from="CanvasLayer/Control/Timer/Timer" to="CanvasLayer/Control/Timer" method="_on_timer_timeout"]
+[connection signal="timeout" from="Quick Loss Timer" to="." method="_on_quick_loss_timer_timeout"]
+[connection signal="timeout" from="Win or Lose Timer" to="." method="_on_win_or_lose_timer_timeout"]

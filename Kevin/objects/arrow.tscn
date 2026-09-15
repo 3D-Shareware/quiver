@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://db1q3o67v7e1o"]
+
+[ext_resource type="Script" uid="uid://cwl5lic2d1vlo" path="res://Kevin/objects/arrow.gd" id="1_pp45e"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3f5e3"]
+radius = 0.25
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bk7jt"]
+radius = 0.25
+
+[node name="Arrow" type="CharacterBody3D" unique_id=97162652]
+collision_layer = 2
+script = ExtResource("1_pp45e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1582521423]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_3f5e3")
+debug_color = Color(0.99409217, 0.07362086, 0, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1817678511]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_bk7jt")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1789244415]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1745541645]
+transform = Transform3D(2.017684e-15, 4.6159226e-08, 1.056, 1.056, -4.6159226e-08, 0, 4.6159226e-08, 1.056, -4.6159226e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_3f5e3")
+debug_color = Color(0.99409217, 0.07362086, 0, 0.41960785)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

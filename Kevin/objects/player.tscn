@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://j7o1fwdabw8"]
+
+[ext_resource type="Script" uid="uid://dp38voijyfxs5" path="res://Kevin/objects/player.gd" id="1_gptsk"]
+
+[node name="Player" type="Node3D" unique_id=492589649]
+script = ExtResource("1_gptsk")
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=1325894347]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=708135965]
+current = true

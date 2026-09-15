@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bvvg37fhy3c4s"]
+
+[ext_resource type="Script" uid="uid://cgm7e4ekkg8oa" path="res://Kevin/objects/target.gd" id="1_4qvjs"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bk7jt"]
+height = 0.1
+radius = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bk7jt"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.1
+
+[node name="Target" type="CharacterBody3D" unique_id=999767853]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+collision_layer = 5
+script = ExtResource("1_4qvjs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1171072238]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_bk7jt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=464933184]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_bk7jt")
