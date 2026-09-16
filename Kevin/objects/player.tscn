@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dp38voijyfxs5" path="res://Kevin/objects/player.gd" id="1_gptsk"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_bk7jt"]
+radius = 0.05
+
 [node name="Player" type="Node3D" unique_id=492589649]
 script = ExtResource("1_gptsk")
 
@@ -9,3 +12,12 @@ script = ExtResource("1_gptsk")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=708135965]
 current = true
+
+[node name="CullingArea" type="Area3D" parent="." unique_id=1767324603]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CullingArea" unique_id=2116511882]
+shape = SubResource("SphereShape3D_bk7jt")
+
+[connection signal="body_exited" from="CullingArea" to="." method="_on_culling_area_body_exited"]

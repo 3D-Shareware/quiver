@@ -4,10 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://j7o1fwdabw8" path="res://Kevin/objects/player.tscn" id="2_qkw15"]
 [ext_resource type="Texture2D" uid="uid://bt1xqtbn7klqg" path="res://Kevin/assets/ui/scope.png" id="3_l5liw"]
 [ext_resource type="Shader" uid="uid://cnbxrjxqtm7fb" path="res://Kevin/shaders/scope.gdshader" id="3_q745s"]
+[ext_resource type="Texture2D" uid="uid://cdn555dgmtxrb" path="res://Kevin/assets/ui/scope_progress_under_small.png" id="4_y03ua"]
+[ext_resource type="Texture2D" uid="uid://g2snxs8hkfu7" path="res://Kevin/assets/ui/scope_progress_progress_small.png" id="5_73dsk"]
 [ext_resource type="Script" uid="uid://cu6m4sgvkxvpu" path="res://Kevin/objects/ui/arrow_ui_center.gd" id="5_jg8o4"]
-[ext_resource type="Texture2D" uid="uid://bw1dqxennqkpl" path="res://Kevin/assets/ui/clock_naked.png" id="6_vopls"]
-[ext_resource type="Script" uid="uid://1i587l2r0iju" path="res://Kevin/objects/ui/timer.gd" id="7_exach"]
-[ext_resource type="FontFile" uid="uid://dasd24mpggck5" path="res://Kevin/assets/fonts/Canterbury.ttf" id="8_vopls"]
+[ext_resource type="PackedScene" uid="uid://ev1462uplc7j" path="res://Kevin/objects/ui/clock_timer.tscn" id="8_vopls"]
+[ext_resource type="PackedScene" uid="uid://ci2fgwaikbags" path="res://Kevin/objects/ui/why_you_lost.tscn" id="9_6rr7m"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3f5e3"]
 size = Vector3(64, 16, 1)
@@ -40,15 +41,8 @@ size = Vector3(1, 16, 16)
 material = SubResource("StandardMaterial3D_sexei")
 size = Vector3(1, 16, 16)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q745s"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bk7jt"]
 shader = ExtResource("3_q745s")
-
-[sub_resource type="Theme" id="Theme_llrvo"]
-default_font = ExtResource("8_vopls")
-RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.78431374)
-RichTextLabel/constants/shadow_offset_x = 4
-RichTextLabel/constants/shadow_offset_y = 4
-RichTextLabel/constants/shadow_outline_size = 8
 
 [node name="Quiver Game" type="Node3D" unique_id=692705577]
 script = ExtResource("1_sexei")
@@ -116,6 +110,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 15, 0)
 light_energy = 10.0
 omni_range = 100.0
 
+[node name="Shadow" type="OmniLight3D" parent="Node3D" unique_id=2045532577]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 8, 0)
+light_energy = 25.0
+light_negative = true
+omni_range = 16.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=517828551]
 
 [node name="Control" type="Control" parent="CanvasLayer" unique_id=86474903]
@@ -125,10 +125,22 @@ offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
 
-[node name="Scope" type="Sprite2D" parent="CanvasLayer/Control" unique_id=739796670]
-modulate = Color(1, 1, 1, 0.88235295)
+[node name="ScopeBar" type="TextureProgressBar" parent="CanvasLayer/Control" unique_id=404408575]
 texture_filter = 1
-material = SubResource("ShaderMaterial_q745s")
+material = SubResource("ShaderMaterial_bk7jt")
+layout_mode = 0
+offset_left = 554.0
+offset_top = 302.0
+offset_right = 565.0
+offset_bottom = 313.0
+scale = Vector2(4, 4)
+fill_mode = 4
+texture_under = ExtResource("4_y03ua")
+texture_progress = ExtResource("5_73dsk")
+
+[node name="Scope" type="Sprite2D" parent="CanvasLayer/Control" unique_id=739796670]
+visible = false
+texture_filter = 1
 position = Vector2(576, 324)
 scale = Vector2(4, 4)
 texture = ExtResource("3_l5liw")
@@ -137,32 +149,15 @@ texture = ExtResource("3_l5liw")
 position = Vector2(1104, 600)
 script = ExtResource("5_jg8o4")
 
-[node name="Timer" type="Sprite2D" parent="CanvasLayer/Control" unique_id=427524924]
-texture_filter = 1
+[node name="Clock Timer" parent="CanvasLayer/Control" unique_id=648612755 instance=ExtResource("8_vopls")]
 position = Vector2(48, 600)
-scale = Vector2(4, 4)
-texture = ExtResource("6_vopls")
-script = ExtResource("7_exach")
 
-[node name="Shadow" type="Sprite2D" parent="CanvasLayer/Control/Timer" unique_id=1210597486]
-modulate = Color(0, 0, 0, 0.78431374)
-z_index = -1
-position = Vector2(1, 1)
-texture = ExtResource("6_vopls")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/Timer" unique_id=1032165669]
-offset_left = 10.5
-offset_top = -6.5
-offset_right = 371.5
-offset_bottom = 52.5
-scale = Vector2(0.25, 0.25)
-mouse_filter = 2
-theme = SubResource("Theme_llrvo")
-theme_override_font_sizes/normal_font_size = 64
-bbcode_enabled = true
-text = "15"
-
-[node name="Timer" type="Timer" parent="CanvasLayer/Control/Timer" unique_id=1151403309]
+[node name="Why You Lost" parent="CanvasLayer/Control" unique_id=2080884224 instance=ExtResource("9_6rr7m")]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 296.0
+offset_right = 1119.0
+offset_bottom = 356.0
 
 [node name="Quick Loss Timer" type="Timer" parent="." unique_id=1494442583]
 wait_time = 0.1
@@ -172,6 +167,5 @@ one_shot = true
 wait_time = 2.5
 one_shot = true
 
-[connection signal="timeout" from="CanvasLayer/Control/Timer/Timer" to="CanvasLayer/Control/Timer" method="_on_timer_timeout"]
 [connection signal="timeout" from="Quick Loss Timer" to="." method="_on_quick_loss_timer_timeout"]
 [connection signal="timeout" from="Win or Lose Timer" to="." method="_on_win_or_lose_timer_timeout"]
