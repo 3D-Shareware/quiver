@@ -3,6 +3,7 @@ extends MicroGame
 const TIME = 15
 
 @onready var player: Node3D = $"Node3D/Player"
+@onready var moving_floor: Node3D = $"Node3D/Moving Floor"
 #@onready var camera: Camera3D = $"Player/Camera3D"
 
 @onready var arrow_ui = $"CanvasLayer/Control/Arrow UI Center"
@@ -29,7 +30,7 @@ var won = false
 
 func _ready() -> void:
 	# REMOVE THIS CODE AFTERWARD!?
-	difficulty = 0
+	difficulty = randf_range(0, 1)
 	GameManager.get_node("Background").hide()
 	#camera.set_current(true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -48,10 +49,11 @@ func _ready() -> void:
 	# Picks random targets to start moving.
 	for i in moving_target_count:
 		if all_targets.size() > 0:
-			all_targets.pop_at(randi_range(0, all_targets.size() - 1)).start_moving(randf_range(3, 3.5 + difficulty * 4))
+			all_targets.pop_at(randi_range(0, all_targets.size() - 1)).start_moving(randf_range(3, 3.5 + difficulty * 6))
 		else:
 			break
 	arrows_left_to_land = max_ammo
+	moving_floor.position.x = 26 - (difficulty * 32)
 	player.ready_by_parent(max_ammo, Vector3(16 - (difficulty * 32), 4, 0), scope)
 	arrow_ui.ready_by_parent(max_ammo)
 	clock_timer.reset_time(TIME)

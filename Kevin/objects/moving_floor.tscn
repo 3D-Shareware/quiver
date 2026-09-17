@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c7pw8pj4nomti"]
+
+[ext_resource type="PackedScene" uid="uid://lh51ybhq4tab" path="res://Kevin/assets/models/wall.glb" id="1_6o4q6"]
+[ext_resource type="PackedScene" uid="uid://c0w78qw2wo8rv" path="res://Kevin/assets/models/magma_emission_edition_2.tscn" id="2_vwtkv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bk7jt"]
+size = Vector3(32, 1, 32)
+
+[node name="Moving Floor" type="Node3D" unique_id=1727737218]
+
+[node name="Floor Front" parent="." unique_id=1789983481 instance=ExtResource("1_6o4q6")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 34, 0.0001001358, 0)
+
+[node name="Floor Back" parent="." unique_id=1790857672 instance=ExtResource("1_6o4q6")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -42, 0, 0)
+
+[node name="Floor Left" parent="." unique_id=855631448 instance=ExtResource("1_6o4q6")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2, 0, -17)
+
+[node name="Floor Right" parent="." unique_id=1821028080 instance=ExtResource("1_6o4q6")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2, 0, 17)
+
+[node name="magma2" parent="." unique_id=265970519 instance=ExtResource("2_vwtkv")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4, 1, 0)
+
+[node name="Lava Hitbox" type="StaticBody3D" parent="." unique_id=725376363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lava Hitbox" unique_id=245012997]
+shape = SubResource("BoxShape3D_bk7jt")
+debug_color = Color(0.73333335, 0.22745098, 1, 1)

@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@onready var light = $"OmniLight3D"
+
 const Z_CLAMPS = [-6, 6]
 
 var moving_speed: float = 0
@@ -14,7 +16,8 @@ func get_hit() -> void:
 		collision_layer = 1
 		moving_speed = 0
 		get_parent().get_parent().target_hit()
-		queue_free()
+		light.light_energy = 0
+		#queue_free()
 
 func _physics_process(delta: float) -> void:
 	if moving_speed:

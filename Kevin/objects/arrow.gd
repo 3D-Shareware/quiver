@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @onready var area = $"Area3D"
+@onready var anim = $"AnimationPlayer"
 
 var speed: float = 45 # usually
 var fall_speed: float = 0 # determines gravity
@@ -15,6 +16,8 @@ func spawn_by_parent(spawn_pos: Vector3, spawn_rotation: Vector3, charge_time: f
 	game = get_parent().get_parent()
 	speed = clamp(charge_time * 100, 15, 100)
 	fall_speed = 50 / speed
+	anim.speed_scale = (speed / 25)
+	anim.play("fly")
 	#immune_to_gravity_time = min(charge_time, 1)
 
 func _physics_process(delta: float) -> void:
@@ -26,6 +29,9 @@ func _physics_process(delta: float) -> void:
 		var collision = move_and_collide(-transform.basis.z * delta * speed)
 		if collision != null:
 			flying = false
+			anim.stop(true)
+			anim.speed_scale = 1
+			anim.play("land")
 			game.arrow_landed()
 			await get_tree().process_frame
 			area.set_deferred("collision_mask", 0)

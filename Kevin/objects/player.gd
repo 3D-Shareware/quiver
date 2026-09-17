@@ -6,7 +6,8 @@ extends Node3D
 const MOUSE_SENSITIVITY = 0.002
 const PERFECT_ARROW_MIN_CHARGE = 1.0
 const PERFECT_ARROW_MAX_CHARGE = 1.05
-const PERFECT_ARROW_OFFSET = 0.025
+const PERFECT_ARROW_OFFSET_MIN = 0.025
+const PERFECT_ARROW_OFFSET_MAX = 0.1
 
 var charge_time: float = 0
 var ammo: int = 0
@@ -29,8 +30,10 @@ func _unhandled_input(event: InputEvent):
 func _physics_process(delta: float) -> void:
 	if !Input.is_action_pressed("kevin_quiver_game_arrow") and ammo and charge_time:#charge_time >= CHARGE_MIN) and ammo:
 		if charge_time >= PERFECT_ARROW_MIN_CHARGE and charge_time <= PERFECT_ARROW_MAX_CHARGE:
-			summon_arrow(camera_pivot.global_rotation + Vector3(PERFECT_ARROW_OFFSET, 0, 0), charge_time, false)
-			summon_arrow(camera_pivot.global_rotation - Vector3(PERFECT_ARROW_OFFSET, 0, 0), charge_time, false)
+			# higher difficulties decrease perfect arrow offset to ensure they're viable at all distances
+			var perfect_arrow_offset = PERFECT_ARROW_OFFSET_MIN + ((1 - game.difficulty) * (PERFECT_ARROW_OFFSET_MAX - PERFECT_ARROW_OFFSET_MIN))
+			summon_arrow(camera_pivot.global_rotation + Vector3(perfect_arrow_offset, 0, 0), charge_time, false)
+			summon_arrow(camera_pivot.global_rotation - Vector3(perfect_arrow_offset, 0, 0), charge_time, false)
 			game.perfect_arrow_shot()
 		summon_arrow(camera_pivot.global_rotation, charge_time, true)
 		ammo -= 1
