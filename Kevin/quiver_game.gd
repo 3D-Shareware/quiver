@@ -83,6 +83,7 @@ func win():
 		light.light_color = Color(0, 1, 0)
 		clock_timer.stop_running()
 		win_or_lose_timer.start()
+		why_you_lost.winner()
 
 func lose(from_ammo: bool):
 	if !game_over:

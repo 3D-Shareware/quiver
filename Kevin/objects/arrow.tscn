@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://db1q3o67v7e1o"]
 
 [ext_resource type="Script" uid="uid://cwl5lic2d1vlo" path="res://Kevin/objects/arrow.gd" id="1_pp45e"]
+[ext_resource type="PackedScene" uid="uid://dis5607jd8umn" path="res://Kevin/assets/models/arrow.glb" id="2_s43nw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3f5e3"]
 radius = 0.25
@@ -14,6 +15,9 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_pp45e")
 
+[node name="arrow" parent="." unique_id=301808458 instance=ExtResource("2_s43nw")]
+transform = Transform3D(0.2, 0, 0, 0, -8.742278e-09, 0.2, 0, -0.2, -8.742278e-09, 0, 0, 1.2474433)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1582521423]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_3f5e3")
@@ -21,6 +25,7 @@ debug_color = Color(0.99409217, 0.07362086, 0, 0.41960785)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1817678511]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_bk7jt")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1789244415]

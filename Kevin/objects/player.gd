@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 		summon_arrow(camera_pivot.global_rotation, charge_time, true)
 		ammo -= 1
 		charge_time = 0
-	if Input.is_action_pressed("kevin_quiver_game_arrow") or charge_time:
+	if ammo and (Input.is_action_pressed("kevin_quiver_game_arrow") or charge_time):
 		if !charge_time:
 			game.nock_arrow()
 		charge_time += delta
