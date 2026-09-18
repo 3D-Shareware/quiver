@@ -2,19 +2,23 @@ extends MicroGame
 
 const TIME = 15
 
+var shot_a_good_arrow = false
+
 @onready var player: Node3D = $"Node3D/Player"
 @onready var moving_floor: Node3D = $"Node3D/Moving Floor"
 #@onready var camera: Camera3D = $"Player/Camera3D"
 
-@onready var arrow_ui = $"CanvasLayer/Control/Arrow UI Center"
-@onready var clock_timer = $"CanvasLayer/Control/Clock Timer"
-@onready var why_you_lost = $"CanvasLayer/Control/Why You Lost"
+@onready var arrow_ui = $"CanvasLayer/Control/Bottom Right/Arrow UI Center"
+@onready var clock_timer = $"CanvasLayer/Control/Bottom Left/Clock Timer"
+@onready var why_you_lost = $"CanvasLayer/Control/CenterContainer/Why You Lost"
+@onready var perfect_arrow_text = $"CanvasLayer/Control/Bottom Middle/Perfect Arrow"
 
-@onready var scope: TextureProgressBar = $"CanvasLayer/Control/ScopeBar"
+@onready var scope: TextureProgressBar = $"CanvasLayer/Control/CenterContainer/ScopeBar"
 
 @onready var node3d: Node3D = $"Node3D"
 
 @onready var light: OmniLight3D = $"Node3D/Light"
+@onready var shadow: OmniLight3D = $"Node3D/Shadow"
 
 @onready var quick_loss_timer: Timer = $"Quick Loss Timer"
 @onready var win_or_lose_timer: Timer = $"Win or Lose Timer"
@@ -57,11 +61,16 @@ func _ready() -> void:
 	player.ready_by_parent(max_ammo, Vector3(16 - (difficulty * 32), 4, 0), scope)
 	arrow_ui.ready_by_parent(max_ammo)
 	clock_timer.reset_time(TIME)
+	why_you_lost.intro()
 
 func nock_arrow() -> void:
 	arrow_ui.nock_arrow()
 
-func shoot_arrow() -> void:
+func shoot_arrow(charge: float) -> void:
+	if charge <= 0.2 and !shot_a_good_arrow:
+		perfect_arrow_text.you_are_stupid()
+	else:
+		shot_a_good_arrow = true
 	arrow_ui.shoot_arrow()
 
 func target_hit() -> void:
@@ -69,9 +78,15 @@ func target_hit() -> void:
 	if targets_left == 0:
 		win()
 
+func secret_hit() -> void:
+	shadow.light_negative = false
+	arrows_left_to_land += player.restock()
+	arrow_ui.restock()
+
 ## Adds two arrows left to land to prevent game from making you lose early from running out of arrows.
 func perfect_arrow_shot() -> void:
 	arrows_left_to_land += 2
+	perfect_arrow_text.perfect()
 
 func arrow_landed() -> void:
 	arrows_left_to_land -= 1
@@ -107,7 +122,8 @@ func end_and_exit():
 
 ## If ammo runs out and the last arrow clearly hasn't hit anything important.
 func _on_quick_loss_timer_timeout() -> void:
-	lose(true)
+	if !arrows_left_to_land:
+		lose(true)
 
 
 func _on_win_or_lose_timer_timeout() -> void:

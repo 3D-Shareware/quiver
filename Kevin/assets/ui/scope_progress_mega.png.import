@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xjuxxj0t02fd"
-path="res://.godot/imported/scope_progress_progress.png-67d8de08c3d3b1092146854a40279f1e.ctex"
+uid="uid://chhyv70orvudg"
+path="res://.godot/imported/scope_progress_mega.png-5b94c5bc442f2739606cdcfe0c40ec86.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Kevin/assets/ui/scope_progress_progress.png"
-dest_files=["res://.godot/imported/scope_progress_progress.png-67d8de08c3d3b1092146854a40279f1e.ctex"]
+source_file="res://Kevin/assets/ui/scope_progress_mega.png"
+dest_files=["res://.godot/imported/scope_progress_mega.png-5b94c5bc442f2739606cdcfe0c40ec86.ctex"]
 
 [params]
 

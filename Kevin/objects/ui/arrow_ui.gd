@@ -7,7 +7,12 @@ extends Sprite2D
 	#pass
 	#other_anim.play("move_up")
 
+func reset() -> void:
+	anim.stop(true)
+	anim.play("restock")
+
 func nock() -> void:
+	anim.stop(true)
 	anim.play("nock")
 
 func fade_out() -> void:

@@ -4,13 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://c7pw8pj4nomti" path="res://Kevin/objects/moving_floor.tscn" id="2_73dsk"]
 [ext_resource type="PackedScene" uid="uid://j7o1fwdabw8" path="res://Kevin/objects/player.tscn" id="2_qkw15"]
 [ext_resource type="PackedScene" uid="uid://lh51ybhq4tab" path="res://Kevin/assets/models/wall.glb" id="3_73dsk"]
-[ext_resource type="Texture2D" uid="uid://bt1xqtbn7klqg" path="res://Kevin/assets/ui/scope.png" id="3_l5liw"]
 [ext_resource type="Shader" uid="uid://cnbxrjxqtm7fb" path="res://Kevin/shaders/scope.gdshader" id="3_q745s"]
-[ext_resource type="Texture2D" uid="uid://cdn555dgmtxrb" path="res://Kevin/assets/ui/scope_progress_under_small.png" id="4_y03ua"]
-[ext_resource type="Texture2D" uid="uid://g2snxs8hkfu7" path="res://Kevin/assets/ui/scope_progress_progress_small.png" id="5_73dsk"]
+[ext_resource type="PackedScene" uid="uid://bvvg37fhy3c4s" path="res://Kevin/objects/target.tscn" id="5_j2wy7"]
 [ext_resource type="Script" uid="uid://cu6m4sgvkxvpu" path="res://Kevin/objects/ui/arrow_ui_center.gd" id="5_jg8o4"]
+[ext_resource type="Texture2D" uid="uid://xkxtmttb2b1p" path="res://Kevin/assets/ui/scope_under_mega.png" id="6_73dsk"]
+[ext_resource type="Texture2D" uid="uid://dbynnjig66l0n" path="res://Kevin/assets/secret/secret_kevin.png" id="6_i50pq"]
+[ext_resource type="Texture2D" uid="uid://chhyv70orvudg" path="res://Kevin/assets/ui/scope_progress_mega.png" id="7_j2wy7"]
 [ext_resource type="PackedScene" uid="uid://ev1462uplc7j" path="res://Kevin/objects/ui/clock_timer.tscn" id="8_vopls"]
 [ext_resource type="PackedScene" uid="uid://ci2fgwaikbags" path="res://Kevin/objects/ui/why_you_lost.tscn" id="9_6rr7m"]
+[ext_resource type="PackedScene" uid="uid://r2idcuwkr037" path="res://Kevin/objects/ui/perfect_arrow.tscn" id="11_73dsk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bk7jt"]
 shader = ExtResource("3_q745s")
@@ -52,48 +54,111 @@ light_energy = 25.0
 light_negative = true
 omni_range = 16.0
 
+[node name="Target" parent="Node3D" unique_id=999767853 instance=ExtResource("5_j2wy7")]
+transform = Transform3D(1.9106855e-15, -1, -4.371139e-08, -4.371139e-08, -4.371139e-08, 1, -1, 0, -4.371139e-08, -18, 17.302402, 0)
+secret = true
+
+[node name="Secret" type="Sprite3D" parent="Node3D" unique_id=705429643]
+transform = Transform3D(16, 0, 0, 0, 16, 0, 0, 0, 16, -33.5, 9, 0.5)
+axis = 0
+shaded = true
+double_sided = false
+texture_filter = 0
+texture = ExtResource("6_i50pq")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=517828551]
 
 [node name="Control" type="Control" parent="CanvasLayer" unique_id=86474903]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
-[node name="ScopeBar" type="TextureProgressBar" parent="CanvasLayer/Control" unique_id=404408575]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control" unique_id=1945861187]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScopeBar" type="TextureProgressBar" parent="CanvasLayer/Control/CenterContainer" unique_id=404408575]
 texture_filter = 1
 material = SubResource("ShaderMaterial_bk7jt")
-layout_mode = 0
-offset_left = 554.0
-offset_top = 302.0
-offset_right = 565.0
-offset_bottom = 313.0
-scale = Vector2(4, 4)
+layout_mode = 2
+mouse_filter = 2
 fill_mode = 4
-texture_under = ExtResource("4_y03ua")
-texture_progress = ExtResource("5_73dsk")
+texture_under = ExtResource("6_73dsk")
+texture_progress = ExtResource("7_j2wy7")
 
-[node name="Scope" type="Sprite2D" parent="CanvasLayer/Control" unique_id=739796670]
-visible = false
-texture_filter = 1
-position = Vector2(576, 324)
-scale = Vector2(4, 4)
-texture = ExtResource("3_l5liw")
+[node name="Why You Lost" parent="CanvasLayer/Control/CenterContainer" unique_id=2080884224 instance=ExtResource("9_6rr7m")]
+custom_minimum_size = Vector2(512, 128)
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Arrow UI Center" type="Node2D" parent="CanvasLayer/Control" unique_id=19710324]
+[node name="Bottom Left" type="Control" parent="CanvasLayer/Control" unique_id=391505321]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -648.0
+offset_right = 1152.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Clock Timer" parent="CanvasLayer/Control/Bottom Left" unique_id=648612755 instance=ExtResource("8_vopls")]
+position = Vector2(48, 600)
+
+[node name="Bottom Right" type="Control" parent="CanvasLayer/Control" unique_id=603849792]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1152.0
+offset_top = -648.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Arrow UI Center" type="Node2D" parent="CanvasLayer/Control/Bottom Right" unique_id=19710324]
 position = Vector2(1104, 600)
 script = ExtResource("5_jg8o4")
 
-[node name="Clock Timer" parent="CanvasLayer/Control" unique_id=648612755 instance=ExtResource("8_vopls")]
-position = Vector2(48, 600)
+[node name="Bottom Middle" type="Control" parent="CanvasLayer/Control" unique_id=1502029949]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
 
-[node name="Why You Lost" parent="CanvasLayer/Control" unique_id=2080884224 instance=ExtResource("9_6rr7m")]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 296.0
-offset_right = 1119.0
-offset_bottom = 356.0
+[node name="Perfect Arrow" parent="CanvasLayer/Control/Bottom Middle" unique_id=314291818 instance=ExtResource("11_73dsk")]
+custom_minimum_size = Vector2(512, 128)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -128.0
+offset_right = 256.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="Quick Loss Timer" type="Timer" parent="." unique_id=1494442583]
 wait_time = 0.1

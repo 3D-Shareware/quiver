@@ -9,6 +9,8 @@ const PERFECT_ARROW_MAX_CHARGE = 1.05
 const PERFECT_ARROW_OFFSET_MIN = 0.025
 const PERFECT_ARROW_OFFSET_MAX = 0.1
 
+#const MAX_AMMO = 6
+
 var charge_time: float = 0
 var ammo: int = 0
 
@@ -51,7 +53,7 @@ func summon_arrow(arrow_rot: Vector3, charge: float, eat_arrow: bool) -> void:
 	add_sibling(new_arrow)
 	new_arrow.spawn_by_parent(camera_pivot.global_position, arrow_rot, charge)
 	if eat_arrow:
-		game.shoot_arrow()
+		game.shoot_arrow(charge)
 
 func ready_by_parent(new_ammo: int, spawn_pos: Vector3, new_scope: TextureProgressBar):
 	ammo = new_ammo
@@ -61,3 +63,9 @@ func ready_by_parent(new_ammo: int, spawn_pos: Vector3, new_scope: TextureProgre
 
 func _on_culling_area_body_exited(body: Node3D) -> void:
 	body.show()
+
+## Returns number of arrows restocked.
+func restock() -> int:
+	var result = 1 #var result = MAX_AMMO - ammo
+	ammo += 1
+	return result

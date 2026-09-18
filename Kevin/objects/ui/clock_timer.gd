@@ -4,7 +4,7 @@ var time: int = 15
 
 var running = false
 
-@onready var game = get_parent().get_parent().get_parent()
+@onready var game = get_parent().get_parent().get_parent().get_parent()
 @onready var text = $"RichTextLabel"
 @onready var timer = $"Timer"
 @onready var anim = $"AnimationPlayer"
