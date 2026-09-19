@@ -117,6 +117,7 @@ func win():
 			torch.win()
 		#light.light_color = Color(0, 1, 0)
 		clock_timer.stop_running()
+		win_or_lose_timer.wait_time = 3.5
 		win_or_lose_timer.start()
 		why_you_lost.winner()
 		floor_anim.play("win")
@@ -128,6 +129,7 @@ func lose(from_ammo: bool):
 			torch.lose()
 		#light.light_color = Color(1, 0, 0)
 		clock_timer.stop_running()
+		win_or_lose_timer.wait_time = 2.5
 		win_or_lose_timer.start()
 		why_you_lost.loser(from_ammo)
 		anim.play("lose")

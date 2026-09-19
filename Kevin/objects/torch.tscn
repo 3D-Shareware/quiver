@@ -43,13 +43,13 @@ _data = {
 &"flicker": SubResource("Animation_4pn4x")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7rm3"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5uw43"]
 resource_name = "Flame"
 cull_mode = 2
 albedo_texture = ExtResource("3_ii5vr")
 roughness = 0.8
 emission_enabled = true
-emission = Color(0.3491902, 0.14108847, 0, 1)
+emission = Color(1, 0, 0, 1)
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
@@ -67,7 +67,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ii5vr"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_4pn4x"]
 resource_name = "ember_Sphere"
 _surfaces = [{
 "aabb": AABB(-0.9999999, -1, -1, 1.9999998, 2, 1.9999999),
@@ -75,7 +75,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 336,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADwAQABEAEgATABQAEgAVABMAFgAXABgAFgAZABcAGgAbABwAGgAdABsAHgAfACAAIQAiACMAIQAkACIAJQAmACcAJQAoACYAKQAqACsAKQAsACoALQAuAC8ALQAwAC4AMQAyADMAMQA0ADIANQA2ADcANQA4ADYAOQA6ADsAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUwBUAFUAVgBXAFgAVgBZAFcAWgBbAFwAWgBdAFsAXgBfAGAAXgBhAF8AYgBjAGQAYgBlAGMAZgBnAGgAaQBqAGsAbABtAG4AbABvAG0AcABxAHIAcABzAHEAdAB1AHYAdAB3AHUAeAB5AHoAeAB7AHkAfAB9AH4AfwCAAIEAggCDAIQAggCFAIMAhgCHAIgAhgCJAIcAigCLAIwAigCNAIsAjgCPAJAAjgCRAI8AkgCTAJQAkgCVAJMAlgCXAJgAmQCaAJsAmQCcAJoAnQCeAJ8AnQCgAJ4AoQCiAKMAoQCkAKIApQCmAKcApQCoAKYAqQCqAKsAqQCsAKoArQCuAK8ArQCwAK4AsQCyALMAtAC1ALYAtAC3ALUAuAC5ALoAuAC7ALkAvAC9AL4AvAC/AL0AwADBAMIAwADDAMEAxADFAMYAxwDIAMkAygDLAMwAygDNAMsAzgDPANAAzgDRAM8A0gDTANQA0gDVANMA1gDXANgA1gDZANcA2gDbANwA2gDdANsA3gDfAOAA4QDiAOMA5ADlAOYA5ADnAOUA6ADpAOoA6ADrAOkA7ADtAO4A7ADvAO0A"),
-"material": SubResource("StandardMaterial3D_r7rm3"),
+"material": SubResource("StandardMaterial3D_5uw43"),
 "name": "Flame",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -108,7 +108,7 @@ libraries/ = SubResource("AnimationLibrary_ii5vr")
 [node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=1981747772]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.656143, 15.942238, 0)
 amount = 6
-mesh = SubResource("ArrayMesh_ii5vr")
+mesh = SubResource("ArrayMesh_4pn4x")
 direction = Vector3(0.5, 1, 0)
 spread = 70.0
 gravity = Vector3(0, 9.8, 0)
