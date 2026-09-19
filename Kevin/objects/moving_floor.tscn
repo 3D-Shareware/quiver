@@ -6,19 +6,69 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_bk7jt"]
 size = Vector3(32, 1, 32)
 
+[sub_resource type="Animation" id="Animation_vwtkv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Floor Front:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(26, 0.0001001358, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pvbma"]
+resource_name = "start"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Floor Front:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(26, 0.0001001358, 0), Vector3(34, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vgg6j"]
+resource_name = "win"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Floor Front:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(34, 0, 0), Vector3(26, 0.0001001358, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k1lwe"]
+_data = {
+&"RESET": SubResource("Animation_vwtkv"),
+&"start": SubResource("Animation_pvbma"),
+&"win": SubResource("Animation_vgg6j")
+}
+
 [node name="Moving Floor" type="Node3D" unique_id=1727737218]
 
 [node name="Floor Front" parent="." unique_id=1789983481 instance=ExtResource("1_6o4q6")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 34, 0.0001001358, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 26, 0.0001001358, 0)
 
 [node name="Floor Back" parent="." unique_id=1790857672 instance=ExtResource("1_6o4q6")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -42, 0, 0)
-
-[node name="Floor Left" parent="." unique_id=855631448 instance=ExtResource("1_6o4q6")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2, 0, -17)
-
-[node name="Floor Right" parent="." unique_id=1821028080 instance=ExtResource("1_6o4q6")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2, 0, 17)
 
 [node name="magma2" parent="." unique_id=265970519 instance=ExtResource("2_vwtkv")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4, 1, 0)
@@ -29,3 +79,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2.5, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Lava Hitbox" unique_id=245012997]
 shape = SubResource("BoxShape3D_bk7jt")
 debug_color = Color(0.73333335, 0.22745098, 1, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1267302573]
+libraries/ = SubResource("AnimationLibrary_k1lwe")

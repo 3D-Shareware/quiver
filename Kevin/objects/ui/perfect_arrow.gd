@@ -8,6 +8,6 @@ func perfect():
 	anim.play("come_in")
 
 func you_are_stupid():
-	text = "[center]Charge thy arrow!"
+	text = "[center]Click and hold!"
 	anim.stop(true)
 	anim.play("come_in_long")

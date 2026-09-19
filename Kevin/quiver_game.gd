@@ -2,11 +2,15 @@ extends MicroGame
 
 const TIME = 15
 
+## When true, resets game and plays at random difficulty.
+const DEBUG = true
+
 var shot_a_good_arrow = false
 
 @onready var player: Node3D = $"Node3D/Player"
 @onready var moving_floor: Node3D = $"Node3D/Moving Floor"
-#@onready var camera: Camera3D = $"Player/Camera3D"
+@onready var anim: AnimationPlayer = $"Node3D/AnimationPlayer"
+@onready var floor_anim: AnimationPlayer = $"Node3D/Moving Floor/AnimationPlayer"
 
 @onready var arrow_ui = $"CanvasLayer/Control/Bottom Right/Arrow UI Center"
 @onready var clock_timer = $"CanvasLayer/Control/Bottom Left/Clock Timer"
@@ -17,7 +21,6 @@ var shot_a_good_arrow = false
 
 @onready var node3d: Node3D = $"Node3D"
 
-@onready var light: OmniLight3D = $"Node3D/Light"
 @onready var shadow: OmniLight3D = $"Node3D/Shadow"
 
 @onready var quick_loss_timer: Timer = $"Quick Loss Timer"
@@ -25,7 +28,12 @@ var shot_a_good_arrow = false
 
 var target = preload("res://Kevin/objects/target.tscn")
 var targets_left: int = 0
-var max_ammo: int = 6
+const MAX_AMMO: int = 6
+
+@onready var torches = [
+	$"Node3D/Wall Left/Torch", $"Node3D/Wall Left/Torch2", $"Node3D/Wall Left/Torch3",
+	$"Node3D/Wall Right/Torch4", $"Node3D/Wall Right/Torch5", $"Node3D/Wall Right/Torch6"
+	]
 
 var arrows_left_to_land: int
 
@@ -33,10 +41,9 @@ var game_over = false
 var won = false
 
 func _ready() -> void:
-	# REMOVE THIS CODE AFTERWARD!?
-	difficulty = randf_range(0, 1)
+	if DEBUG:
+		difficulty = randf_range(0, 1)
 	GameManager.get_node("Background").hide()
-	#camera.set_current(true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	targets_left = 3
 	# starting position of targets. Helps produce y placement variety.
@@ -56,12 +63,21 @@ func _ready() -> void:
 			all_targets.pop_at(randi_range(0, all_targets.size() - 1)).start_moving(randf_range(3, 3.5 + difficulty * 6))
 		else:
 			break
-	arrows_left_to_land = max_ammo
+	arrows_left_to_land = MAX_AMMO
 	moving_floor.position.x = 26 - (difficulty * 32)
-	player.ready_by_parent(max_ammo, Vector3(16 - (difficulty * 32), 4, 0), scope)
-	arrow_ui.ready_by_parent(max_ammo)
+	player.ready_by_parent(MAX_AMMO, Vector3(16 - (difficulty * 32), 4, 0), scope)
+	arrow_ui.ready_by_parent(MAX_AMMO)
+	#clock_timer.reset_time(TIME)
+	#why_you_lost.intro()
+	#floor_anim.play("start")
+
+## When the player reaches their goal position. Starts timers and all that.
+func officially_start():
+	floor_anim.play("start")
+	await floor_anim.animation_finished
 	clock_timer.reset_time(TIME)
 	why_you_lost.intro()
+	player.start_playing()
 
 func nock_arrow() -> void:
 	arrow_ui.nock_arrow()
@@ -97,19 +113,24 @@ func win():
 	if !game_over:
 		won = true
 		game_over = true
-		light.light_color = Color(0, 1, 0)
+		for torch in torches:
+			torch.win()
+		#light.light_color = Color(0, 1, 0)
 		clock_timer.stop_running()
 		win_or_lose_timer.start()
 		why_you_lost.winner()
+		floor_anim.play("win")
 
 func lose(from_ammo: bool):
 	if !game_over:
 		game_over = true
-		light.light_color = Color(1, 0, 0)
+		for torch in torches:
+			torch.lose()
+		#light.light_color = Color(1, 0, 0)
 		clock_timer.stop_running()
 		win_or_lose_timer.start()
 		why_you_lost.loser(from_ammo)
-		
+		anim.play("lose")
 
 func end_and_exit():
 	GameManager.get_node("Background").show()
@@ -127,7 +148,7 @@ func _on_quick_loss_timer_timeout() -> void:
 
 
 func _on_win_or_lose_timer_timeout() -> void:
-	# TEMPORARY CODE BRO
-	# should run end_and_exit() instead of any of this nonsense
-	#end_and_exit()
-	get_tree().reload_current_scene()
+	if DEBUG:
+		get_tree().reload_current_scene()
+	else:
+		end_and_exit()
