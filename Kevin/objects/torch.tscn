@@ -107,7 +107,7 @@ libraries/ = SubResource("AnimationLibrary_ii5vr")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=1981747772]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.656143, 15.942238, 0)
-amount = 6
+amount = 4
 mesh = SubResource("ArrayMesh_4pn4x")
 direction = Vector3(0.5, 1, 0)
 spread = 70.0

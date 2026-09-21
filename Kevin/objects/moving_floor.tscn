@@ -85,9 +85,12 @@ tracks/2/path = NodePath("Chest")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.8, 1),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"land"
+}, {
 "args": [],
 "method": &"open_up"
 }]

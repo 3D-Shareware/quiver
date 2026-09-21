@@ -20,11 +20,12 @@ var shot_a_good_arrow = false
 @onready var scope: TextureProgressBar = $"CanvasLayer/Control/CenterContainer/ScopeBar"
 
 @onready var node3d: Node3D = $"Node3D"
-
 @onready var shadow: OmniLight3D = $"Node3D/Shadow"
 
 @onready var quick_loss_timer: Timer = $"Quick Loss Timer"
 @onready var win_or_lose_timer: Timer = $"Win or Lose Timer"
+
+@onready var music = $"Music"
 
 var target = preload("res://Kevin/objects/target.tscn")
 var targets_left: int = 0
@@ -67,9 +68,7 @@ func _ready() -> void:
 	moving_floor.position.x = 26 - (difficulty * 32)
 	player.ready_by_parent(MAX_AMMO, Vector3(16 - (difficulty * 32), 4, 0), scope)
 	arrow_ui.ready_by_parent(MAX_AMMO)
-	#clock_timer.reset_time(TIME)
-	#why_you_lost.intro()
-	#floor_anim.play("start")
+	music.play()
 
 ## When the player reaches their goal position. Starts timers and all that.
 func officially_start():
@@ -148,6 +147,8 @@ func _on_quick_loss_timer_timeout() -> void:
 	if !arrows_left_to_land:
 		lose(true)
 
+func chest_landed() -> void:
+	player.chest_landed()
 
 func _on_win_or_lose_timer_timeout() -> void:
 	if DEBUG:

@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ev1462uplc7j" path="res://Kevin/objects/ui/clock_timer.tscn" id="8_vopls"]
 [ext_resource type="PackedScene" uid="uid://ci2fgwaikbags" path="res://Kevin/objects/ui/why_you_lost.tscn" id="9_6rr7m"]
 [ext_resource type="PackedScene" uid="uid://r2idcuwkr037" path="res://Kevin/objects/ui/perfect_arrow.tscn" id="11_73dsk"]
+[ext_resource type="AudioStream" uid="uid://dyvvgciwmjryv" path="res://Kevin/assets/sounds/Sinking_Arrows.wav" id="15_eskkr"]
 
 [sub_resource type="Animation" id="Animation_i50pq"]
 length = 0.001
@@ -69,6 +70,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 6.9000998, 17), Vector3(0, 6.9000998, 17), Vector3(0, 6.9, 16.5), Vector3(0, 6.9, 17), Vector3(0, 6.9, 16.5), Vector3(0, 6.9, 17), Vector3(0, 6.9, 16.5), Vector3(0, 6.9, 17), Vector3(0, 6.9, 16.5), Vector3(0, 6.9, 17), Vector3(0, 6.9, 16.5), Vector3(0, 6.9, 17), Vector3(0, 6.9, 9)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"wall_shake"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eskkr"]
@@ -252,6 +267,9 @@ one_shot = true
 [node name="Win or Lose Timer" type="Timer" parent="." unique_id=1283844682]
 wait_time = 2.5
 one_shot = true
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=800849815]
+stream = ExtResource("15_eskkr")
 
 [connection signal="timeout" from="Quick Loss Timer" to="." method="_on_quick_loss_timer_timeout"]
 [connection signal="timeout" from="Win or Lose Timer" to="." method="_on_win_or_lose_timer_timeout"]

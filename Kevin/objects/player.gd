@@ -3,6 +3,7 @@ extends Node3D
 @onready var camera_pivot: Node3D = $"CameraPivot"
 @onready var camera: Camera3D  = $"CameraPivot/Camera3D"
 @onready var game = get_parent().get_parent()
+@onready var anim = $"AnimationPlayer"
 
 const MOUSE_SENSITIVITY = 0.002
 const PERFECT_ARROW_MIN_CHARGE = 1.0
@@ -88,3 +89,12 @@ func restock() -> int:
 	var result = 1 #var result = MAX_AMMO - ammo
 	ammo += 1
 	return result
+
+func chest_landed() -> void:
+	anim.stop(true)
+	anim.play("shake")
+
+func wall_shake() -> void:
+	anim.stop(true)
+	anim.play("wall_shake_infinite")
+	
