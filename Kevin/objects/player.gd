@@ -66,8 +66,8 @@ func _physics_process(delta: float) -> void:
 		if abs(position.x - starting_pos.x) < 0.1:
 			moving = false
 			game.officially_start()
-	if Input.is_action_just_pressed("ctrl"):
-		get_tree().quit()
+	#if Input.is_action_just_pressed("ctrl"):
+		#get_tree().quit()
 
 func summon_arrow(arrow_rot: Vector3, charge: float, eat_arrow: bool) -> void:
 	var new_arrow = arrow.instantiate()
