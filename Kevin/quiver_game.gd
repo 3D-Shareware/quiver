@@ -3,7 +3,7 @@ extends MicroGame
 const TIME = 15
 
 ## When true, resets game and plays at random difficulty.
-const DEBUG = true
+const DEBUG = false
 
 var shot_a_good_arrow = false
 
@@ -26,6 +26,9 @@ var shot_a_good_arrow = false
 @onready var win_or_lose_timer: Timer = $"Win or Lose Timer"
 
 @onready var music = $"Music"
+
+var win_music = preload("res://Kevin/assets/sounds/Quiver_Win.wav")
+var lose_music = preload("res://Kevin/assets/sounds/Quiver_Lose.wav")
 
 var target = preload("res://Kevin/objects/target.tscn")
 var targets_left: int = 0
@@ -68,7 +71,6 @@ func _ready() -> void:
 	moving_floor.position.x = 26 - (difficulty * 32)
 	player.ready_by_parent(MAX_AMMO, Vector3(16 - (difficulty * 32), 4, 0), scope)
 	arrow_ui.ready_by_parent(MAX_AMMO)
-	music.play()
 
 ## When the player reaches their goal position. Starts timers and all that.
 func officially_start():
@@ -114,24 +116,28 @@ func win():
 		game_over = true
 		for torch in torches:
 			torch.win()
-		#light.light_color = Color(0, 1, 0)
 		clock_timer.stop_running()
 		win_or_lose_timer.wait_time = 3.5
 		win_or_lose_timer.start()
 		why_you_lost.winner()
 		floor_anim.play("win")
+		music.stop()
+		music.stream = win_music
+		music.play()
 
 func lose(from_ammo: bool):
 	if !game_over:
 		game_over = true
 		for torch in torches:
 			torch.lose()
-		#light.light_color = Color(1, 0, 0)
 		clock_timer.stop_running()
 		win_or_lose_timer.wait_time = 2.5
 		win_or_lose_timer.start()
 		why_you_lost.loser(from_ammo)
 		anim.play("lose")
+		music.stop()
+		music.stream = lose_music
+		music.play()
 
 func end_and_exit():
 	GameManager.get_node("Background").show()
@@ -155,3 +161,6 @@ func _on_win_or_lose_timer_timeout() -> void:
 		get_tree().reload_current_scene()
 	else:
 		end_and_exit()
+
+func play_music() -> void:
+	music.play()

@@ -17,6 +17,8 @@ const MOVE_SPEED = 4
 var charge_time: float = 0
 var ammo: int = 0
 
+var played_music = false
+
 ## Set to true after intro cutscene finishes, which then allows for player input.
 var playing = false
 ## For the player's entrance animation.
@@ -57,6 +59,9 @@ func _physics_process(delta: float) -> void:
 			charge_time += delta
 		scope.value = charge_time * 100
 	elif moving:
+		if !played_music:
+			played_music = true
+			game.play_music()
 		position.x = move_toward(position.x, starting_pos.x, MOVE_SPEED * delta)
 		if abs(position.x - starting_pos.x) < 0.1:
 			moving = false
